@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://6ynxdnp8xjhm"]
+
+[ext_resource type="Script" uid="uid://bwhhbh1lcdmqs" path="res://entities/player/Player.cs" id="1_symyc"]
+
+[node name="Player" type="Node2D" unique_id=1888017555]
+script = ExtResource("1_symyc")
