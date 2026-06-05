@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://2441nifpxlb6"]
+
+[ext_resource type="Script" uid="uid://c4s5sx7k73ycs" path="res://system/MiniGames/Trilha.cs" id="1_b7kb3"]
+[ext_resource type="Texture2D" uid="uid://cl7i1tg744b4" path="res://ui/hud/cadeado.png" id="1_mxshy"]
+[ext_resource type="Texture2D" uid="uid://dox2q5wt26xoc" path="res://ui/hud/libras-avatar.png" id="2_avatar"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxshy"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 6
+border_color = Color(0, 0.3372549, 0.7019608, 1)
+corner_radius_top_left = 55
+corner_radius_top_right = 55
+corner_radius_bottom_right = 55
+corner_radius_bottom_left = 55
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_badge"]
+bg_color = Color(0.5529412, 0.7764706, 0.24705882, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 2
+
+[node name="CasaTrilha" type="Node2D" unique_id=601696904]
+script = ExtResource("1_b7kb3")
+
+[node name="BotaoBase" type="PanelContainer" parent="." unique_id=191593315]
+custom_minimum_size = Vector2(110, 110)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -55.0
+offset_right = 55.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mxshy")
+
+[node name="MarginContainer" type="MarginContainer" parent="BotaoBase" unique_id=1079001693]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="IconeFase" type="TextureRect" parent="BotaoBase/MarginContainer" unique_id=1119504596]
+layout_mode = 2
+texture = ExtResource("2_avatar")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BadgeStatus" type="PanelContainer" parent="." unique_id=1165658405]
+custom_minimum_size = Vector2(32, 32)
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 52.0
+offset_bottom = 52.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_badge")
+
+[node name="IconeCadeado" type="TextureRect" parent="BadgeStatus" unique_id=2142326873]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_mxshy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CheckLabel" type="Label" parent="BadgeStatus" unique_id=530190681]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "✓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumeroLabel" type="Label" parent="." unique_id=1358926677]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = 65.0
+offset_right = 80.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "Fase 1"
+horizontal_alignment = 1
+vertical_alignment = 1

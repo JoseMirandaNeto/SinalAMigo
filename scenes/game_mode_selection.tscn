@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://bvwmb8mkmqb0"]
+
+[ext_resource type="Script" uid="uid://bnvh5i4ob2cxs" path="res://system/GameModeSelection.cs" id="1_2tsgs"]
+[ext_resource type="FontFile" uid="uid://brylkpsg34uns" path="res://impact.ttf" id="1_7oq8s"]
+[ext_resource type="PackedScene" uid="uid://hq556ufvuakv" path="res://ui/menus/Card.tscn" id="1_cmpd4"]
+[ext_resource type="Script" uid="uid://cx38rw17x4eep" path="res://system/SafeAreaHandler.cs" id="2_60qdd"]
+[ext_resource type="Texture2D" uid="uid://cd3dke8eoh2dc" path="res://ui/hud/preview.jpeg" id="4_moyxg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bql0y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb0uk"]
+bg_color = Color(0.10980392, 0.45882353, 0.9411765, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moyxg"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.3372549, 0.7019608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[node name="Control" type="Control" unique_id=1347801289]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2tsgs")
+
+[node name="Background" type="TextureRect" parent="." unique_id=218829872]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_bql0y")
+
+[node name="SafeContainer" type="MarginContainer" parent="." unique_id=1456329199]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_60qdd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeContainer" unique_id=1829309693]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Title" type="Label" parent="SafeContainer/VBoxContainer" unique_id=2102485654]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7oq8s")
+theme_override_font_sizes/font_size = 36
+text = "Escolha o modo de jogo"
+uppercase = true
+
+[node name="CardsContainer" type="HBoxContainer" parent="SafeContainer/VBoxContainer" unique_id=1022811796]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="CardAventura" parent="SafeContainer/VBoxContainer/CardsContainer" unique_id=515026044 instance=ExtResource("1_cmpd4")]
+layout_mode = 2
+focus_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_nb0uk")
+NomeDoModo = "libras_memory"
+Titulo = "AVENTURA"
+Descricao = "Explore o mundo e aprenda novos sinais!"
+Preview = ExtResource("4_moyxg")
+
+[node name="CardTrilha" parent="SafeContainer/VBoxContainer/CardsContainer" unique_id=1825801661 instance=ExtResource("1_cmpd4")]
+layout_mode = 2
+NomeDoModo = "Trilha"
+Titulo = "TRILHA"
+Descricao = "Se desafie na trilha de Sinais: supere cada etapa e seja recompensado!"
+
+[node name="CardDuelo" parent="SafeContainer/VBoxContainer/CardsContainer" unique_id=1487338053 instance=ExtResource("1_cmpd4")]
+layout_mode = 2
+NomeDoModo = "Game"
+Titulo = "DUELO"
+Descricao = "Jogue com outros jogadores e veja quem é o mais rápido a reconhecer os Sinais!"
+Desativado = true
+
+[node name="Button" type="Button" parent="." unique_id=227249815]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 145.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_7oq8s")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_moyxg")
+text = "< Voltar"
+
+[connection signal="pressed" from="Button" to="." method="OnBtnVoltarPressed"]

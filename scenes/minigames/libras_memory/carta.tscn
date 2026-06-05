@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bm1s111iw5rn4"]
+
+[ext_resource type="Script" uid="uid://8wak0ocv2w8e" path="res://system/MiniGames/Carta.gd" id="1_5jb5w"]
+[ext_resource type="Texture2D" uid="uid://dox2q5wt26xoc" path="res://ui/hud/libras-avatar.png" id="2_eiheu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eiheu"]
+bg_color = Color(0, 0.3372549, 0.7019608, 1)
+border_width_bottom = 4
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 4
+
+[node name="Carta" type="TextureButton" unique_id=530502644]
+custom_minimum_size = Vector2(120, 120)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1032.0
+offset_bottom = -528.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_5jb5w")
+
+[node name="Background" type="Panel" parent="." unique_id=976110067]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eiheu")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1634255312]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Conteudo" type="TextureRect" parent="MarginContainer" unique_id=319515047]
+visible = false
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("2_eiheu")
+expand_mode = 1
+
+[node name="LabelTexto" type="Label" parent="MarginContainer" unique_id=19876543]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true

@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://cqkn8fhtvstky"]
+
+[ext_resource type="Script" uid="uid://y8t7gpeckttd" path="res://system/MiniGames/LibrasMemory.cs" id="1_in874"]
+[ext_resource type="Texture2D" uid="uid://bu8dotembirw8" path="res://ui/hud/Sinalito-avatar.png" id="2_dcjkb"]
+[ext_resource type="Script" uid="uid://cx38rw17x4eep" path="res://system/SafeAreaHandler.cs" id="2_sdr86"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+bg_color = Color(0.9490196, 0.95686275, 0.972549, 1)
+border_width_bottom = 3
+border_color = Color(0.8784314, 0.8980392, 0.9254902, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="LibrasMemory" type="Control" unique_id=1471382510]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_in874")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1597593998]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9607843, 0.96862745, 0.98039216, 1)
+
+[node name="SafeContainer" type="MarginContainer" parent="." unique_id=1125941944]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_sdr86")
+
+[node name="MainLayout" type="VBoxContainer" parent="SafeContainer" unique_id=2082008255]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HeaderPanel" type="PanelContainer" parent="SafeContainer/MainLayout" unique_id=46546214]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="Margin" type="MarginContainer" parent="SafeContainer/MainLayout/HeaderPanel" unique_id=1910840220]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="Header" type="HBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin" unique_id=1537168157]
+layout_mode = 2
+
+[node name="BtnVoltar" type="Button" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=2090148652]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = " < Sair "
+
+[node name="LabelPontos" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=1961764659]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
+theme_override_font_sizes/font_size = 20
+text = "Pares: 0/6"
+
+[node name="Espaçador" type="Control" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=1666032502]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=132185604]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.3372549, 0.7019608, 1)
+theme_override_font_sizes/font_size = 22
+text = "Libras da Memória"
+horizontal_alignment = 1
+
+[node name="Espaçador2" type="Control" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=998748306]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelTempo" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=2146334158]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
+theme_override_font_sizes/font_size = 20
+text = "Tempo: 00:00"
+
+[node name="GameArea" type="CenterContainer" parent="SafeContainer/MainLayout" unique_id=1302040425]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardGrid" type="GridContainer" parent="SafeContainer/MainLayout/GameArea" unique_id=367562481]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 4
+
+[node name="Footer" type="HBoxContainer" parent="SafeContainer/MainLayout" unique_id=16997135]
+layout_mode = 2
+alignment = 1
+
+[node name="SinalitoAvatar" type="TextureRect" parent="SafeContainer/MainLayout/Footer" unique_id=231472091]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("2_dcjkb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DicaLabel" type="Label" parent="SafeContainer/MainLayout/Footer" unique_id=1729628308]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Encontre os pares de sinais!"
+autowrap_mode = 2

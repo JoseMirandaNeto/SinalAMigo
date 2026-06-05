@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SinalData" format=3 uid="uid://8gax8vvbjqpb"]
+
+[ext_resource type="Script" uid="uid://cjqgcoi0efs8t" path="res://system/SinalLibras.cs" id="1_vf5io"]
+
+[resource]
+script = ExtResource("1_vf5io")
+metadata/_custom_type_script = "uid://cjqgcoi0efs8t"

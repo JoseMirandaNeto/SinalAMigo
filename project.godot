@@ -10,24 +10,39 @@ config_version=5
 
 [application]
 
-config/name="projetoh"
-run/main_scene="uid://cmog3pvc75t3n"
-config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
+config/name="projetoLibras"
+config/version="0.0.1"
+run/main_scene="uid://d0qxjsxvi8ct7"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+run/max_fps=60
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[autoload]
+
+LevelManager="*uid://csn35ibctk06q"
+GameManager="*uid://bllw8s3be8j2g"
+SaveManager="*uid://byn7ch08jv6w7"
+
 [display]
 
-window/size/resizable=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="projetoh"
+project/assembly_name="projetolibras"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[importer_defaults]
+
+animation_library={
+&"animation/fps": 60.0
+}
 
 [physics]
 
@@ -38,3 +53,4 @@ version_control/autoload_on_startup=true
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

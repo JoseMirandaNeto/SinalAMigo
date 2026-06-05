@@ -1,6 +1,23 @@
 [gd_scene format=3 uid="uid://6ynxdnp8xjhm"]
 
-[ext_resource type="Script" uid="uid://bwhhbh1lcdmqs" path="res://entities/player/Player.cs" id="1_symyc"]
+[ext_resource type="Script" uid="uid://bwhhbh1lcdmqs" path="res://entities/player/Player.gd" id="1_symyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sglur"]
+size = Vector2(22, 32)
 
 [node name="Player" type="Node2D" unique_id=1888017555]
 script = ExtResource("1_symyc")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=635836305]
+scale = Vector2(0.6, 0.6)
+safe_margin = 3.0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1061361734]
+scale = Vector2(1.6666666, 1.6666666)
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=38395853]
+position = Vector2(31.66666, 48.333344)
+shape = SubResource("RectangleShape2D_sglur")

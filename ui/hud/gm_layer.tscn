@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dejj40f25kegp"]
+
+[ext_resource type="Script" uid="uid://cx38rw17x4eep" path="res://system/SafeAreaHandler.gd" id="1_lthua"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jku5j"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.3372549, 0.7019608, 1)
+
+[node name="GM Layer" type="CanvasLayer" unique_id=1238770627]
+layer = 128
+
+[node name="SafeContainer" type="MarginContainer" parent="." unique_id=1973912233]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_lthua")
+
+[node name="PanelContainer" type="PanelContainer" parent="SafeContainer" unique_id=2111961791]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jku5j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeContainer/PanelContainer" unique_id=735836810]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="SafeContainer/PanelContainer/VBoxContainer" unique_id=886057853]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="SafeContainer/PanelContainer/VBoxContainer/Header" unique_id=2145850451]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SafeContainer/PanelContainer/VBoxContainer/Header" unique_id=311919210]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MODO GM"
+
+[node name="MarginContainer" type="MarginContainer" parent="SafeContainer/PanelContainer/VBoxContainer/Header" unique_id=1222368867]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="SafeContainer/PanelContainer/VBoxContainer/Header" unique_id=1796226581]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = " X "
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SafeContainer/PanelContainer/VBoxContainer" unique_id=716969952]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+follow_focus = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SafeContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=436414195]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+
+[node name="LineEdit" type="LineEdit" parent="SafeContainer/PanelContainer/VBoxContainer" unique_id=1839092837]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20

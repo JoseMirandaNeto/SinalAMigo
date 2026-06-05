@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://b0trfxls3dagl"]
+
+[ext_resource type="PackedScene" uid="uid://2441nifpxlb6" path="res://scenes/minigames/Trilha/CasaTrilha.tscn" id="1_5orda"]
+[ext_resource type="Script" uid="uid://c4s5sx7k73ycs" path="res://system/MiniGames/Trilha.cs" id="1_sywqs"]
+[ext_resource type="Script" uid="uid://cx38rw17x4eep" path="res://system/SafeAreaHandler.cs" id="3_b424x"]
+[ext_resource type="FontFile" uid="uid://brylkpsg34uns" path="res://impact.ttf" id="3_font"]
+[ext_resource type="Texture2D" uid="uid://bu8dotembirw8" path="res://ui/hud/Sinalito-avatar.png" id="4_avatar"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5orda"]
+
+[sub_resource type="Gradient" id="Gradient_5orda"]
+colors = PackedColorArray(0.30980393, 0.27450982, 0.8980392, 1, 0.45760542, 0.7453409, 1, 0.99607843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_koynb"]
+gradient = SubResource("Gradient_5orda")
+width = 1152
+height = 648
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 0.25128207)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+bg_color = Color(0.9490196, 0.95686275, 0.972549, 1)
+border_width_bottom = 4
+border_color = Color(0.8784314, 0.8980392, 0.9254902, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moyxg"]
+content_margin_left = 15.0
+content_margin_top = 8.0
+content_margin_right = 15.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0.3372549, 0.7019608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.18431373, 0.18431373, 0.23137255, 0.15)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.5529412, 0.7764706, 0.24705882, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_comecar"]
+bg_color = Color(0.5529412, 0.7764706, 0.24705882, 1)
+border_width_bottom = 6
+border_color = Color(0.3882353, 0.5882353, 0.15686275, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_comecar_hover"]
+bg_color = Color(0.48235294, 0.7019608, 0.19607843, 1)
+border_width_bottom = 4
+border_color = Color(0.3882353, 0.5882353, 0.15686275, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Node2D" type="Node2D" unique_id=453203657]
+script = ExtResource("1_sywqs")
+
+[node name="CanvasBackground" type="CanvasLayer" parent="." unique_id=889133649]
+layer = -10
+
+[node name="TextureRect" type="TextureRect" parent="CanvasBackground" unique_id=425279762]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_5orda")
+
+[node name="Background" type="Sprite2D" parent="CanvasBackground" unique_id=1368740647]
+visible = false
+texture = SubResource("GradientTexture2D_koynb")
+
+[node name="CasasContainer" type="Node2D" parent="." unique_id=247284689]
+
+[node name="CasaTrilha" parent="CasasContainer" unique_id=601696904 instance=ExtResource("1_5orda")]
+
+[node name="CasaTrilha2" parent="CasasContainer" unique_id=1483171904 instance=ExtResource("1_5orda")]
+position = Vector2(134, 93)
+
+[node name="CasaTrilha3" parent="CasasContainer" unique_id=621250353 instance=ExtResource("1_5orda")]
+position = Vector2(297, 123)
+
+[node name="CasaTrilha4" parent="CasasContainer" unique_id=1069032604 instance=ExtResource("1_5orda")]
+position = Vector2(466, 138)
+
+[node name="CasaTrilha5" parent="CasasContainer" unique_id=1562263495 instance=ExtResource("1_5orda")]
+position = Vector2(646, 81)
+
+[node name="CasaTrilha7" parent="CasasContainer" unique_id=482706009 instance=ExtResource("1_5orda")]
+position = Vector2(1031, 194)
+
+[node name="CasaTrilha8" parent="CasasContainer" unique_id=1617035644 instance=ExtResource("1_5orda")]
+position = Vector2(1197, 123)
+
+[node name="CasaTrilha9" parent="CasasContainer" unique_id=898723988 instance=ExtResource("1_5orda")]
+position = Vector2(1306, 246)
+
+[node name="CasaTrilha10" parent="CasasContainer" unique_id=1888138041 instance=ExtResource("1_5orda")]
+position = Vector2(1321, 416)
+
+[node name="CasaTrilha12" parent="CasasContainer" unique_id=849272089 instance=ExtResource("1_5orda")]
+position = Vector2(1239, 732)
+
+[node name="CasaTrilha13" parent="CasasContainer" unique_id=221282501 instance=ExtResource("1_5orda")]
+position = Vector2(1081, 811)
+
+[node name="CasaTrilha6" parent="CasasContainer" unique_id=1976398167 instance=ExtResource("1_5orda")]
+position = Vector2(790, 214)
+scale = Vector2(1.5, 1.5)
+
+[node name="CasaTrilha11" parent="CasasContainer" unique_id=998167340 instance=ExtResource("1_5orda")]
+position = Vector2(1376, 559)
+scale = Vector2(1.5, 1.5)
+
+[node name="CanvasUI" type="CanvasLayer" parent="." unique_id=1207818210]
+layer = 5
+
+[node name="SafeContainer" type="MarginContainer" parent="CanvasUI" unique_id=1966628661]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("3_b424x")
+
+[node name="MainLayout" type="VBoxContainer" parent="CanvasUI/SafeContainer" unique_id=1581713]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HeaderPanel" type="PanelContainer" parent="CanvasUI/SafeContainer/MainLayout" unique_id=1445471324]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="Margin" type="MarginContainer" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel" unique_id=1998457995]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="Header" type="HBoxContainer" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin" unique_id=1540287026]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="TextureRect" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=2089840459]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_avatar")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AppName" type="Label" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=135539033]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.3372549, 0.7019608, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "Sinal Amigo"
+
+[node name="Spacer" type="Control" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=93136168]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StreakLabel" type="Label" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=1276745462]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.35, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+text = "🔥 15 dias"
+
+[node name="XPLabel" type="Label" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=2089724532]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+text = "XP: 0"
+
+[node name="BtnVoltar" type="Button" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=1885746803]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_moyxg")
+text = "< Sair"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasUI/SafeContainer/MainLayout" unique_id=1509016235]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+value = 65.0
+show_percentage = false
+
+[node name="SpacerMiddle" type="Control" parent="CanvasUI/SafeContainer/MainLayout" unique_id=169606159]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="BottomPanel" type="PanelContainer" parent="CanvasUI/SafeContainer/MainLayout" unique_id=1126859763]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="Margin" type="MarginContainer" parent="CanvasUI/SafeContainer/MainLayout/BottomPanel" unique_id=475959411]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
+
+[node name="BtnComecar" type="Button" parent="CanvasUI/SafeContainer/MainLayout/BottomPanel/Margin" unique_id=1615672573]
+custom_minimum_size = Vector2(280, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_comecar")
+theme_override_styles/hover = SubResource("StyleBoxFlat_comecar_hover")
+text = "COMEÇAR LIÇÃO"
