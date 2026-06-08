@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b0trfxls3dagl"]
 
 [ext_resource type="PackedScene" uid="uid://2441nifpxlb6" path="res://scenes/minigames/Trilha/CasaTrilha.tscn" id="1_5orda"]
-[ext_resource type="Script" uid="uid://c4s5sx7k73ycs" path="res://system/MiniGames/Trilha.cs" id="1_sywqs"]
-[ext_resource type="Script" uid="uid://cx38rw17x4eep" path="res://system/SafeAreaHandler.cs" id="3_b424x"]
-[ext_resource type="FontFile" uid="uid://brylkpsg34uns" path="res://impact.ttf" id="3_font"]
+[ext_resource type="Script" uid="uid://ivelogipssnn" path="res://system/MiniGames/Trilha.gd" id="1_sywqs"]
+[ext_resource type="Script" uid="uid://crc2ymiqqqn81" path="res://system/SafeAreaHandler.gd" id="3_b424x"]
+[ext_resource type="FontFile" uid="uid://bcph10er1nc2r" path="res://impact.ttf" id="3_font"]
 [ext_resource type="Texture2D" uid="uid://bu8dotembirw8" path="res://ui/hud/Sinalito-avatar.png" id="4_avatar"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5orda"]
@@ -177,16 +177,34 @@ texture = ExtResource("4_avatar")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AppName" type="Label" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=135539033]
+[node name="LicaoInfo" type="VBoxContainer" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=502415635]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="LicaoTitulo" type="Label" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header/LicaoInfo" unique_id=937467728]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.3372549, 0.7019608, 1)
 theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 20
-text = "Sinal Amigo"
+text = "Lição 1 - Alfabeto Libras"
 
-[node name="Spacer" type="Control" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=93136168]
+[node name="LicaoProgresso" type="Label" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header/LicaoInfo" unique_id=46965661]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "Módulo  1 de 3"
+
+[node name="LicaoDescricao" type="Label" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header/LicaoInfo" unique_id=729680115]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.55, 0.55, 1)
+theme_override_font_sizes/font_size = 12
+text = "Aprenda as letras do alfabeto em Libras"
+autowrap_mode = 2
+
+[node name="HeaderSpacer" type="Control" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=999341644]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
 
 [node name="StreakLabel" type="Label" parent="CanvasUI/SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=1276745462]
 layout_mode = 2

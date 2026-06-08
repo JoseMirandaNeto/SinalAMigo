@@ -6,6 +6,7 @@ var _keyboard_grid: GridContainer
 var _instruction_label: Label
 var _title_label: Label
 var _btn_voltar: Button
+var _bubble_label: Label
 
 var _palavras_db: Array[String] = [
 	"LIBRAS", "AMIGO", "SINAL", "AMOR", "OI", 
@@ -25,6 +26,15 @@ func _ready() -> void:
 	_instruction_label = get_node_or_null("SafeContainer/MainLayout/InstructionLabel") as Label
 	_title_label = get_node_or_null("SafeContainer/MainLayout/HeaderPanel/Margin/Header/TitleLabel") as Label
 	_btn_voltar = get_node_or_null("SafeContainer/MainLayout/HeaderPanel/Margin/Header/BtnVoltar") as Button
+	_bubble_label = get_node_or_null("SafeContainer/MainLayout/SinalitoArea/SpeechBubble/Margin/BubbleLabel") as Label
+
+	if _bubble_label:
+		var font_base = ThemeDB.fallback_font
+		if font_base:
+			var font_bold = FontVariation.new()
+			font_bold.base_font = font_base
+			font_bold.variation_embolden = 0.5
+			_bubble_label.add_theme_font_override("font", font_bold)
 
 	if _btn_voltar:
 		_btn_voltar.pressed.connect(_on_btn_voltar_pressed)
@@ -44,11 +54,16 @@ func _ready() -> void:
 	atualizar_instrucao()
 	gerar_caixas_palavra()
 	gerar_teclado_visual()
+	atualizar_balao("Olá! Vamos soletrar? A primeira letra é a %s! Procure o sinal dela!" % _palavra_alvo[0])
 
 func atualizar_instrucao() -> void:
 	if _instruction_label and _letra_atual_index < _palavra_alvo.length():
 		var letra_esperada = _palavra_alvo[_letra_atual_index]
 		_instruction_label.text = "Clique sobre os sinais do alfabeto manual para traduzir a palavra acima, começando pela letra (%s):" % letra_esperada
+
+func atualizar_balao(texto: String) -> void:
+	if _bubble_label:
+		_bubble_label.text = texto
 
 func gerar_caixas_palavra() -> void:
 	if not _word_container: return
@@ -175,8 +190,23 @@ func _on_tecla_teclado_pressionada(letra_clicada: String, botao: Button) -> void
 			concluir_minigame()
 		else:
 			atualizar_instrucao()
+			var prox = _palavra_alvo[_letra_atual_index]
+			var progresso = _letra_atual_index
+			if progresso == 1:
+				atualizar_balao("Muito bem! Agora encontre a letra %s!" % prox)
+			elif progresso == 2:
+				atualizar_balao("Continua assim! Próxima letra: %s!" % prox)
+			else:
+				atualizar_balao("Falta pouco! Procure a letra %s!" % prox)
 	else:
 		animar_erro(botao)
+		var frases_erro: Array[String] = [
+			"Essa não é a letra certa. Tente de novo!",
+			"Não desista! Procure a letra %s com atenção." % letra_esperada,
+			"Opa! Não era essa. Olhe bem os sinais!",
+			"Quase! Tente encontrar a letra %s." % letra_esperada
+		]
+		atualizar_balao(frases_erro[randi() % frases_erro.size()])
 
 func revelar_letra_atual() -> void:
 	if _letra_atual_index >= _letter_boxes.size(): return
@@ -222,6 +252,8 @@ func concluir_minigame() -> void:
 	if _instruction_label:
 		_instruction_label.text = "Excelente! Você traduziu a palavra com sucesso!"
 		_instruction_label.add_theme_color_override("font_color", Color("#8dc63f"))
+
+	atualizar_balao("Parabéns! Você completou a palavra %s! Continue assim!" % _palavra_alvo)
 
 	for i in range(_letter_boxes.size()):
 		var box = _letter_boxes[i]

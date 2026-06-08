@@ -1,3 +1,33 @@
-# Godot 4+ specific ignores
+# Godot
 .godot/
-/android/
+*.translation
+*.uid
+
+# Imported translations
+*.import
+
+# Mono / .NET specific
+.mono/
+data_*/
+*.csproj
+*.sln
+*.user
+*.user.*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Build artifacts
+*.apk
+*.idsig
+*.zip
+*.aab
+*.aar
+
+# Exports
+export/
+
+# Old C# backup
+_backup_cs/

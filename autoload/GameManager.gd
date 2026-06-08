@@ -1,5 +1,4 @@
 extends Node
-class_name GameManager
 
 var nome_jogador: String = "José"
 var nivel_atual: int = 1

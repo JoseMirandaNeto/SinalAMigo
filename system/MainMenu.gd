@@ -4,24 +4,149 @@ class_name MainMenu
 var _btn_jogar: Button
 var _btn_config: Button
 var _logo: Label
+var _sinalito: TextureRect
+
+var _popup_layer: CanvasLayer
+var _nome_input: LineEdit
+var _btn_confirmar: Button
+var _safe_container: MarginContainer
+
+const SAVE_PATH = "user://savegame.json"
 
 func _ready() -> void:
 	_btn_jogar = get_node_or_null("SafeContainer/MainLayout/CenterLayout/ButtonsContainer/BtnJogar") as Button
 	_btn_config = get_node_or_null("SafeContainer/MainLayout/CenterLayout/ButtonsContainer/BtnConfig") as Button
-	
+	_safe_container = get_node_or_null("SafeContainer") as MarginContainer
+
 	if _btn_jogar: _btn_jogar.pressed.connect(_on_btn_jogar_pressed)
 	if _btn_config: _btn_config.pressed.connect(_on_btn_config_pressed)
-	
+
 	print("MainMenu: Interface de Libras carregada com sucesso!")
-	
+
 	_logo = get_node_or_null("SafeContainer/MainLayout/CenterLayout/LogoContainer/Logo") as Label
+	_sinalito = get_node_or_null("SafeContainer/MainLayout/CenterLayout/SinalitoContainer/Sinalito") as TextureRect
 
 	if _logo:
 		_logo.modulate = Color(1, 1, 1, 0)
 		var fade_tween = create_tween().bind_node(self)
 		fade_tween.tween_property(_logo, "modulate:a", 1.0, 1.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
+	if _sinalito:
+		_sinalito.modulate = Color(1, 1, 1, 0)
+		var fade_mascote = create_tween().bind_node(self)
+		fade_mascote.tween_property(_sinalito, "modulate:a", 1.0, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_delay(0.5)
+
+		var bob_tween = create_tween().bind_node(self).set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		bob_tween.tween_property(_sinalito, "position:y", _sinalito.position.y - 8.0, 1.2)
+		bob_tween.tween_property(_sinalito, "position:y", _sinalito.position.y, 1.2)
+
+	verificar_nome_jogador()
+
+func verificar_nome_jogador() -> void:
+	if not FileAccess.file_exists(SAVE_PATH):
+		print("MainMenu: Nenhum save encontrado, exibindo popup.")
+		mostrar_popup_nome()
+		return
+
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if file == null:
+		print("MainMenu: Erro ao ler save, exibindo popup.")
+		mostrar_popup_nome()
+		return
+
+	var json_string = file.get_as_text()
+	var json = JSON.new()
+
+	if json.parse(json_string) != OK:
+		print("MainMenu: JSON inválido, exibindo popup.")
+		mostrar_popup_nome()
+		return
+
+	var data = json.data as Dictionary
+	var nome_salvado = str(data.get("NomeJogador", ""))
+
+	if nome_salvado != "" and nome_salvado != "José":
+		var game_manager = get_node_or_null("/root/GameManager")
+		if game_manager:
+			game_manager.nome_jogador = nome_salvado
+		var save_manager = get_node_or_null("/root/SaveManager")
+		if save_manager:
+			save_manager.carregar_jogo()
+		atualizar_stats_interface()
+		print("MainMenu: Nome '%s' carregado do save." % nome_salvado)
+		return
+
+	print("MainMenu: Nome padrão no save, exibindo popup.")
+	mostrar_popup_nome()
+
+func mostrar_popup_nome() -> void:
+	_popup_layer = get_node_or_null("PopupLayer") as CanvasLayer
+	_nome_input = get_node_or_null("PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout/NomeInput") as LineEdit
+	_btn_confirmar = get_node_or_null("PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout/BtnConfirmar") as Button
+	var overlay = get_node_or_null("PopupLayer/Overlay") as ColorRect
+	var popup_panel = get_node_or_null("PopupLayer/PopupContainer/PopupPanel") as PanelContainer
+
+	if _popup_layer:
+		_popup_layer.visible = true
+
+	if _safe_container:
+		_safe_container.visible = false
+
+	if overlay:
+		overlay.color = Color(0, 0, 0, 0)
+		var tween = create_tween().bind_node(self)
+		tween.tween_property(overlay, "color", Color(0, 0, 0, 0.5), 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+	if popup_panel:
+		popup_panel.modulate = Color(1, 1, 1, 0)
+		popup_panel.scale = Vector2(0.8, 0.8)
+		popup_panel.pivot_offset = popup_panel.size / 2.0
+		var tween_panel = create_tween().bind_node(self)
+		tween_panel.tween_property(popup_panel, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween_panel.parallel().tween_property(popup_panel, "scale", Vector2(1.0, 1.0), 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	if _nome_input:
+		_nome_input.text = ""
+		_nome_input.grab_focus()
+
+	if _btn_confirmar and not _btn_confirmar.pressed.is_connected(_on_btn_confirmar_pressed):
+		_btn_confirmar.pressed.connect(_on_btn_confirmar_pressed)
+
+func _on_btn_confirmar_pressed() -> void:
+	if _nome_input == null: return
+
+	var nome = _nome_input.text.strip_edges()
+	if nome == "":
+		_nome_input.placeholder_text = "Por favor, digite um nome!"
+		return
+
+	var game_manager = get_node_or_null("/root/GameManager")
+	if game_manager:
+		game_manager.nome_jogador = nome
+
+	var save_manager = get_node_or_null("/root/SaveManager")
+	if save_manager:
+		save_manager.salvar_jogo()
+
+	var overlay = get_node_or_null("PopupLayer/Overlay") as ColorRect
+	var popup_panel = get_node_or_null("PopupLayer/PopupContainer/PopupPanel") as PanelContainer
+
+	var tween = create_tween().bind_node(self)
+	if popup_panel:
+		tween.tween_property(popup_panel, "modulate:a", 0.0, 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+		tween.parallel().tween_property(popup_panel, "scale", Vector2(0.8, 0.8), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	if overlay:
+		tween.parallel().tween_property(overlay, "color", Color(0, 0, 0, 0), 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+
+	tween.tween_callback(func():
+		if _popup_layer:
+			_popup_layer.visible = false
+		if _safe_container:
+			_safe_container.visible = true
+	)
+
 	atualizar_stats_interface()
+	print("MainMenu: Nome do jogador definido como '%s'" % nome)
 
 func atualizar_stats_interface() -> void:
 	var label_name = get_node_or_null("SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/PlayerName") as Label

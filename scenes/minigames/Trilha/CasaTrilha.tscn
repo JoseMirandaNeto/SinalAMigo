@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2441nifpxlb6"]
 
-[ext_resource type="Script" uid="uid://c4s5sx7k73ycs" path="res://system/MiniGames/Trilha.cs" id="1_b7kb3"]
+[ext_resource type="Script" uid="uid://b3o6gucme6pxk" path="res://system/MiniGames/CasaTrilha.gd" id="1_b7kb3"]
 [ext_resource type="Texture2D" uid="uid://cl7i1tg744b4" path="res://ui/hud/cadeado.png" id="1_mxshy"]
 [ext_resource type="Texture2D" uid="uid://dox2q5wt26xoc" path="res://ui/hud/libras-avatar.png" id="2_avatar"]
 
@@ -104,6 +104,6 @@ theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 16
-text = "Fase 1"
+text = "Módulo 1"
 horizontal_alignment = 1
 vertical_alignment = 1

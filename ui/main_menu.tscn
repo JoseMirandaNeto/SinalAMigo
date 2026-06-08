@@ -1,66 +1,67 @@
 [gd_scene format=3 uid="uid://d0qxjsxvi8ct7"]
 
-[ext_resource type="FontFile" uid="uid://brylkpsg34uns" path="res://impact.ttf" id="1_t7e0r"]
-[ext_resource type="Script" uid="uid://bemukeyeen0rw" path="res://system/MainMenu.cs" id="1_wk0pr"]
+[ext_resource type="FontFile" uid="uid://bcph10er1nc2r" path="res://impact.ttf" id="1_t7e0r"]
+[ext_resource type="Script" uid="uid://dequ1vpafyrtr" path="res://system/MainMenu.gd" id="1_wk0pr"]
 [ext_resource type="Texture2D" uid="uid://dox2q5wt26xoc" path="res://ui/hud/libras-avatar.png" id="4_8uxxo"]
+[ext_resource type="Texture2D" uid="uid://bu8dotembirw8" path="res://ui/hud/Sinalito-avatar.png" id="4_rmr83"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.9490196, 0.95686275, 0.972549, 1)
-border_width_bottom = 5
+border_width_bottom = 3
 border_color = Color(0.8784314, 0.8980392, 0.9254902, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8ri8"]
 bg_color = Color(1, 1, 1, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0, 0.3372549, 0.7019608, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubpvv"]
 bg_color = Color(0.18431373, 0.18431373, 0.23137255, 0.15)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arv2f"]
 bg_color = Color(0.5529412, 0.7764706, 0.24705882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dkrt"]
+bg_color = Color(0, 0.3372549, 0.7019608, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_size = 3
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ei257"]
+bg_color = Color(0.18431373, 0.18431373, 0.23137255, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dkrt"]
-bg_color = Color(0, 0.3372549, 0.7019608, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_size = 4
-shadow_offset = Vector2(0, 4)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ei257"]
-bg_color = Color(0.18431373, 0.18431373, 0.23137255, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk0pr"]
 bg_color = Color(0.10980392, 0.45882353, 0.9411765, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="MainMenu" type="Control" unique_id=871423339]
 layout_mode = 3
@@ -82,159 +83,242 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9607843, 0.96862745, 0.98039216, 1)
 
-[node name="SafeContainer" type="MarginContainer" parent="." unique_id=2028832413]
+[node name="SafeContainer" type="MarginContainer" parent="." unique_id=1740248608]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 4
 
-[node name="MainLayout" type="VBoxContainer" parent="SafeContainer" unique_id=2129360729]
+[node name="MainLayout" type="VBoxContainer" parent="SafeContainer" unique_id=1694723481]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 6
 
-[node name="HeaderPanel" type="PanelContainer" parent="SafeContainer/MainLayout" unique_id=211755586]
+[node name="HeaderPanel" type="PanelContainer" parent="SafeContainer/MainLayout" unique_id=1529329848]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="Margin" type="MarginContainer" parent="SafeContainer/MainLayout/HeaderPanel" unique_id=1050902371]
+[node name="Margin" type="MarginContainer" parent="SafeContainer/MainLayout/HeaderPanel" unique_id=452776890]
 layout_mode = 2
 theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_bottom = 10
 
-[node name="Header" type="HBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin" unique_id=1889363216]
+[node name="Header" type="HBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin" unique_id=1922805463]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
-[node name="AvatarContainer" type="PanelContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=1465164515]
-custom_minimum_size = Vector2(80, 80)
+[node name="AvatarContainer" type="PanelContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=944633073]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p8ri8")
 
-[node name="AvatarImage" type="TextureRect" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/AvatarContainer" unique_id=1012932514]
+[node name="AvatarImage" type="TextureRect" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/AvatarContainer" unique_id=231752011]
 layout_mode = 2
 texture = ExtResource("4_8uxxo")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PlayerStats" type="VBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=549008847]
-custom_minimum_size = Vector2(240, 0)
+[node name="PlayerStats" type="VBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=859734739]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="PlayerName" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats" unique_id=1915340249]
+[node name="PlayerName" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats" unique_id=1303725916]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Olá, Jogador"
 
-[node name="LevelInfo" type="HBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats" unique_id=1543295195]
+[node name="LevelInfo" type="HBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats" unique_id=191228383]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 8
 
-[node name="LevelLabel" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/LevelInfo" unique_id=1930755913]
+[node name="LevelLabel" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/LevelInfo" unique_id=1847387436]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 14
 text = "Nível 1"
 
-[node name="ExperienceBar" type="ProgressBar" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/LevelInfo" unique_id=452907231]
-custom_minimum_size = Vector2(0, 16)
+[node name="ExperienceBar" type="ProgressBar" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/LevelInfo" unique_id=1875132664]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
 theme_override_styles/background = SubResource("StyleBoxFlat_ubpvv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_arv2f")
 value = 40.0
 
-[node name="SpacerTop" type="Control" parent="SafeContainer/MainLayout" unique_id=1137686743]
+[node name="CenterLayout" type="VBoxContainer" parent="SafeContainer/MainLayout" unique_id=1502429602]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="CenterLayout" type="VBoxContainer" parent="SafeContainer/MainLayout" unique_id=475699390]
-layout_mode = 2
-theme_override_constants/separation = 35
+theme_override_constants/separation = 2
 alignment = 1
 
-[node name="LogoContainer" type="VBoxContainer" parent="SafeContainer/MainLayout/CenterLayout" unique_id=1410994562]
+[node name="LogoContainer" type="VBoxContainer" parent="SafeContainer/MainLayout/CenterLayout" unique_id=1314564027]
 layout_mode = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 1
 
-[node name="Logo" type="Label" parent="SafeContainer/MainLayout/CenterLayout/LogoContainer" unique_id=977326840]
+[node name="Logo" type="Label" parent="SafeContainer/MainLayout/CenterLayout/LogoContainer" unique_id=311878401]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.3372549, 0.7019608, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 36
 text = "Sinal Amigo"
 horizontal_alignment = 1
 
-[node name="Slogan" type="Label" parent="SafeContainer/MainLayout/CenterLayout/LogoContainer" unique_id=1941293502]
+[node name="Slogan" type="Label" parent="SafeContainer/MainLayout/CenterLayout/LogoContainer" unique_id=1841027090]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 13
 text = "Aprenda Libras de forma divertida!"
 horizontal_alignment = 1
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="SafeContainer/MainLayout/CenterLayout" unique_id=143946026]
-custom_minimum_size = Vector2(300, 0)
+[node name="SinalitoContainer" type="HBoxContainer" parent="SafeContainer/MainLayout/CenterLayout" unique_id=1959402640]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 15
+alignment = 1
 
-[node name="BtnJogar" type="Button" parent="SafeContainer/MainLayout/CenterLayout/ButtonsContainer" unique_id=378782988]
-custom_minimum_size = Vector2(0, 60)
+[node name="Sinalito" type="TextureRect" parent="SafeContainer/MainLayout/CenterLayout/SinalitoContainer" unique_id=1989049383]
+custom_minimum_size = Vector2(270, 270)
+layout_mode = 2
+texture = ExtResource("4_rmr83")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="SafeContainer/MainLayout/CenterLayout" unique_id=861063197]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="BtnJogar" type="Button" parent="SafeContainer/MainLayout/CenterLayout/ButtonsContainer" unique_id=1867331939]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_0dkrt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ei257")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wk0pr")
 text = "JOGAR"
 
-[node name="BtnConfig" type="Button" parent="SafeContainer/MainLayout/CenterLayout/ButtonsContainer" unique_id=1674266959]
-custom_minimum_size = Vector2(0, 60)
+[node name="BtnConfig" type="Button" parent="SafeContainer/MainLayout/CenterLayout/ButtonsContainer" unique_id=2001924106]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_0dkrt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ei257")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wk0pr")
 text = "CONFIGURAÇÕES"
 
-[node name="SpacerBottom" type="Control" parent="SafeContainer/MainLayout" unique_id=1210943304]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="FooterLayout" type="HBoxContainer" parent="SafeContainer/MainLayout" unique_id=1624266817]
+[node name="FooterLayout" type="HBoxContainer" parent="SafeContainer/MainLayout" unique_id=909029123]
 layout_mode = 2
 
-[node name="Footer" type="Label" parent="SafeContainer/MainLayout/FooterLayout" unique_id=1288196248]
+[node name="Footer" type="Label" parent="SafeContainer/MainLayout/FooterLayout" unique_id=1831572356]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 12
 text = "SENAC NH - Turma 8562"
 
-[node name="Spacer" type="Control" parent="SafeContainer/MainLayout/FooterLayout" unique_id=1902235850]
+[node name="Spacer" type="Control" parent="SafeContainer/MainLayout/FooterLayout" unique_id=1300020803]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Version" type="Label" parent="SafeContainer/MainLayout/FooterLayout" unique_id=380058095]
+[node name="Version" type="Label" parent="SafeContainer/MainLayout/FooterLayout" unique_id=1592038222]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 14
-text = "Versão 0.0.1 (Teste)"
+theme_override_font_sizes/font_size = 10
+text = "Versão 0.0.1"
+
+[node name="PopupLayer" type="CanvasLayer" parent="." unique_id=2142527658]
+layer = 10
+visible = false
+
+[node name="Overlay" type="ColorRect" parent="PopupLayer" unique_id=139577259]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="PopupContainer" type="CenterContainer" parent="PopupLayer" unique_id=955106339]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopupPanel" type="PanelContainer" parent="PopupLayer/PopupContainer" unique_id=737624106]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0dkrt")
+
+[node name="Margin" type="MarginContainer" parent="PopupLayer/PopupContainer/PopupPanel" unique_id=2032159685]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 20
+
+[node name="PopupLayout" type="VBoxContainer" parent="PopupLayer/PopupContainer/PopupPanel/Margin" unique_id=687140466]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="SinalitoPopup" type="TextureRect" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=346489757]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_rmr83")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Titulo" type="Label" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=1416327075]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_t7e0r")
+theme_override_font_sizes/font_size = 22
+text = "Olá! Eu me chamo Sinalito!"
+horizontal_alignment = 1
+
+[node name="Descricao" type="Label" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=719252226]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.88, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Sinal Amigo é um jogo educativo para aprender Libras de forma divertida! Memorize sinais, complete fases e evolua na trilha do aprendizado."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="NomeInput" type="LineEdit" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=640100335]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Digite seu nome aqui..."
+alignment = 1
+max_length = 20
+
+[node name="BtnConfirmar" type="Button" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=793087693]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t7e0r")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_arv2f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wk0pr")
+text = "VAMOS LÁ!"

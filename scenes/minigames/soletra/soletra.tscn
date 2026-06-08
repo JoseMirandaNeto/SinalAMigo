@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqtsoletra123"]
+[gd_scene load_steps=7 format=3 uid="uid://cqtsoletra123"]
 
 [ext_resource type="Script" path="res://system/MiniGames/Soletra.gd" id="1_soletra"]
 [ext_resource type="Script" path="res://system/SafeAreaHandler.gd" id="2_safe"]
+[ext_resource type="Texture2D" uid="uid://bu8dotembirw8" path="res://ui/hud/Sinalito-avatar.png" id="3_avatar"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
 bg_color = Color(0.12, 0.12, 0.18, 1)
@@ -11,6 +12,22 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
 
 [node name="Soletra" type="Control" unique_id=208298712]
 layout_mode = 3
@@ -98,6 +115,44 @@ theme_override_font_sizes/font_size = 16
 text = "Clique sobre os sinais do alfabeto manual para traduzir a palavra acima, começando pela letra (L):"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="SinalitoArea" type="HBoxContainer" parent="SafeContainer/MainLayout"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="SinalitoMascote" type="TextureRect" parent="SafeContainer/MainLayout/SinalitoArea"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("3_avatar")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BubblePointer" type="Polygon2D" parent="SafeContainer/MainLayout/SinalitoArea"]
+layout_mode = 2
+polygon = PackedVector2Array(0, 20, 14, 30, 0, 40)
+color = Color(1, 1, 1, 1)
+
+[node name="SpeechBubble" type="PanelContainer" parent="SafeContainer/MainLayout/SinalitoArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_minimum_size = Vector2(0, 50)
+theme_override_styles/panel = SubResource("StyleBoxFlat_bubble")
+
+[node name="Margin" type="MarginContainer" parent="SafeContainer/MainLayout/SinalitoArea/SpeechBubble"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="BubbleLabel" type="Label" parent="SafeContainer/MainLayout/SinalitoArea/SpeechBubble/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Olá! Vamos soletrar?"
+autowrap_mode = 2
+vertical_alignment = 1
 
 [node name="KeyboardArea" type="CenterContainer" parent="SafeContainer/MainLayout" unique_id=10293]
 layout_mode = 2

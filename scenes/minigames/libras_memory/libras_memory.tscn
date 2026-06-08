@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cqkn8fhtvstky"]
 
-[ext_resource type="Script" uid="uid://y8t7gpeckttd" path="res://system/MiniGames/LibrasMemory.cs" id="1_in874"]
+[ext_resource type="Script" uid="uid://bkxt5gbco6qk0" path="res://system/MiniGames/LibrasMemory.gd" id="1_in874"]
+[ext_resource type="PackedScene" uid="uid://bm1s111iw5rn4" path="res://scenes/minigames/libras_memory/carta.tscn" id="3_carta"]
 [ext_resource type="Texture2D" uid="uid://bu8dotembirw8" path="res://ui/hud/Sinalito-avatar.png" id="2_dcjkb"]
-[ext_resource type="Script" uid="uid://cx38rw17x4eep" path="res://system/SafeAreaHandler.cs" id="2_sdr86"]
+[ext_resource type="Script" uid="uid://crc2ymiqqqn81" path="res://system/SafeAreaHandler.gd" id="2_sdr86"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
 bg_color = Color(0.9490196, 0.95686275, 0.972549, 1)
@@ -21,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_in874")
+carta_prefab = ExtResource("3_carta")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1597593998]
 layout_mode = 1

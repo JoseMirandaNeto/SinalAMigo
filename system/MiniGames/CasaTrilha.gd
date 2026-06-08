@@ -3,7 +3,11 @@ class_name CasaTrilha
 
 signal casa_pressionada(numero_fase: int)
 
-@export var numero_fase: int = 1
+@export var numero_fase: int = 1:
+	set(value):
+		numero_fase = value
+		if is_inside_tree():
+			atualizar_texto_label()
 
 var _botao_base: PanelContainer
 var _numero_label: Label
@@ -12,15 +16,15 @@ var _icone_cadeado: TextureRect
 var _check_label: Label
 var _icone_fase: TextureRect
 
-var _cor_fundo_bloqueada: Color = Color("#e9ecef")
+var _cor_fundo_bloqueada: Color = Color("#e0e0e0")
 var _cor_fundo_liberada: Color = Color("#ffffff")
-var _cor_fundo_completada: Color = Color("#e2f0d9")
+var _cor_fundo_completada: Color = Color("#d4edda")
 
-var _cor_borda_bloqueada: Color = Color("#adb5bd")
+var _cor_borda_bloqueada: Color = Color("#bdbdbd")
 var _cor_borda_liberada: Color = Color("#f0a500")
 var _cor_borda_completada: Color = Color("#8dc63f")
 
-var _cor_badge_bloqueado: Color = Color("#6c757d")
+var _cor_badge_bloqueado: Color = Color("#9e9e9e")
 var _cor_badge_completo: Color = Color("#8dc63f")
 
 enum EstadoCasa { BLOQUEADA, LIBERADA, COMPLETADA }
@@ -49,7 +53,7 @@ func configurar_icone_fase() -> void:
 	if _icone_fase == null: return
 
 	var path_icone = "res://ui/hud/libras-avatar.png"
-	
+
 	match numero_fase:
 		1:
 			path_icone = "res://ui/hud/libras-avatar.png"
@@ -64,7 +68,7 @@ func configurar_icone_fase() -> void:
 
 func atualizar_texto_label() -> void:
 	if _numero_label:
-		_numero_label.text = "Fase " + str(numero_fase)
+		_numero_label.text = "Módulo " + str(numero_fase)
 
 func definir_estado(novo_estado: int) -> void:
 	estado = novo_estado
@@ -82,8 +86,9 @@ func atualizar_estado_visual() -> void:
 		EstadoCasa.BLOQUEADA:
 			estilo_base.bg_color = _cor_fundo_bloqueada
 			estilo_base.border_color = _cor_borda_bloqueada
-			if _icone_fase: _icone_fase.modulate = Color(1, 1, 1, 0.4)
-			_numero_label.modulate = Color(0.3, 0.3, 0.3, 0.6)
+			estilo_base.border_width_bottom = 4
+			if _icone_fase: _icone_fase.modulate = Color(1, 1, 1, 0.3)
+			_numero_label.modulate = Color(0.5, 0.5, 0.5, 0.6)
 
 			_badge_status.visible = true
 			estilo_badge.bg_color = _cor_badge_bloqueado
@@ -93,14 +98,19 @@ func atualizar_estado_visual() -> void:
 		EstadoCasa.LIBERADA:
 			estilo_base.bg_color = _cor_fundo_liberada
 			estilo_base.border_color = _cor_borda_liberada
+			estilo_base.border_width_bottom = 6
 			if _icone_fase: _icone_fase.modulate = Color(1, 1, 1, 1)
-			_numero_label.modulate = Color(0.1, 0.5, 0.9, 1)
+			_numero_label.modulate = Color(0.1, 0.45, 0.85, 1)
 
 			_badge_status.visible = false
+
+			if not _botao_base.is_connected("draw", _animar_pulsacao):
+				_animar_pulsacao()
 
 		EstadoCasa.COMPLETADA:
 			estilo_base.bg_color = _cor_fundo_completada
 			estilo_base.border_color = _cor_borda_completada
+			estilo_base.border_width_bottom = 4
 			if _icone_fase: _icone_fase.modulate = Color(1, 1, 1, 0.9)
 			_numero_label.modulate = Color(0.15, 0.55, 0.25, 1)
 
@@ -111,6 +121,12 @@ func atualizar_estado_visual() -> void:
 
 	_botao_base.add_theme_stylebox_override("panel", estilo_base)
 	_badge_status.add_theme_stylebox_override("panel", estilo_badge)
+
+func _animar_pulsacao() -> void:
+	if estado != EstadoCasa.LIBERADA: return
+	var tween = create_tween().bind_node(self).set_loops()
+	tween.tween_property(_botao_base, "scale", Vector2(1.05, 1.05), 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(_botao_base, "scale", Vector2(1.0, 1.0), 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func _on_botao_base_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

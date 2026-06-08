@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bvwmb8mkmqb0"]
 
-[ext_resource type="Script" uid="uid://bnvh5i4ob2cxs" path="res://system/GameModeSelection.cs" id="1_2tsgs"]
+[ext_resource type="Script" uid="uid://bc0k6vlbkhyem" path="res://system/GameModeSelection.gd" id="1_2tsgs"]
 [ext_resource type="FontFile" uid="uid://brylkpsg34uns" path="res://impact.ttf" id="1_7oq8s"]
 [ext_resource type="PackedScene" uid="uid://hq556ufvuakv" path="res://ui/menus/Card.tscn" id="1_cmpd4"]
-[ext_resource type="Script" uid="uid://cx38rw17x4eep" path="res://system/SafeAreaHandler.cs" id="2_60qdd"]
+[ext_resource type="Script" uid="uid://crc2ymiqqqn81" path="res://system/SafeAreaHandler.gd" id="2_60qdd"]
 [ext_resource type="Texture2D" uid="uid://cd3dke8eoh2dc" path="res://ui/hud/preview.jpeg" id="4_moyxg"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_bql0y"]
@@ -76,27 +76,27 @@ layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="CardAventura" parent="SafeContainer/VBoxContainer/CardsContainer" unique_id=515026044 instance=ExtResource("1_cmpd4")]
+[node name="CardAventura" parent="SafeContainer/VBoxContainer/CardsContainer" instance=ExtResource("1_cmpd4")]
 layout_mode = 2
 focus_mode = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nb0uk")
-NomeDoModo = "libras_memory"
-Titulo = "AVENTURA"
-Descricao = "Explore o mundo e aprenda novos sinais!"
-Preview = ExtResource("4_moyxg")
+nome_do_modo = "libras_memory"
+titulo = "AVENTURA"
+descricao = "Explore o mundo e aprenda novos sinais!"
+preview = ExtResource("4_moyxg")
 
-[node name="CardTrilha" parent="SafeContainer/VBoxContainer/CardsContainer" unique_id=1825801661 instance=ExtResource("1_cmpd4")]
+[node name="CardTrilha" parent="SafeContainer/VBoxContainer/CardsContainer" instance=ExtResource("1_cmpd4")]
 layout_mode = 2
-NomeDoModo = "Trilha"
-Titulo = "TRILHA"
-Descricao = "Se desafie na trilha de Sinais: supere cada etapa e seja recompensado!"
+nome_do_modo = "Trilha"
+titulo = "TRILHA"
+descricao = "Se desafie na trilha de Sinais: supere cada etapa e seja recompensado!"
 
-[node name="CardDuelo" parent="SafeContainer/VBoxContainer/CardsContainer" unique_id=1487338053 instance=ExtResource("1_cmpd4")]
+[node name="CardDuelo" parent="SafeContainer/VBoxContainer/CardsContainer" instance=ExtResource("1_cmpd4")]
 layout_mode = 2
-NomeDoModo = "Game"
-Titulo = "DUELO"
-Descricao = "Jogue com outros jogadores e veja quem é o mais rápido a reconhecer os Sinais!"
-Desativado = true
+nome_do_modo = "Game"
+titulo = "DUELO"
+descricao = "Jogue com outros jogadores e veja quem é o mais rápido a reconhecer os Sinais!"
+desativado = true
 
 [node name="Button" type="Button" parent="." unique_id=227249815]
 layout_mode = 0
@@ -110,4 +110,4 @@ theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_moyxg")
 text = "< Voltar"
 
-[connection signal="pressed" from="Button" to="." method="OnBtnVoltarPressed"]
+[connection signal="pressed" from="Button" to="." method="_on_btn_voltar_pressed"]

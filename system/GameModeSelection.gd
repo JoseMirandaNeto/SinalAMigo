@@ -5,10 +5,6 @@ var _btn_voltar: Button
 
 func _ready() -> void:
 	_btn_voltar = get_node_or_null("Button") as Button
-	if _btn_voltar != null:
-		_btn_voltar.pressed.connect(_on_btn_voltar_pressed)
-	else:
-		printerr("GameModeSelection: Botao de voltar nao encontrado!")
 
 func _on_btn_voltar_pressed() -> void:
 	var menu_path = "res://ui/main_menu.tscn"

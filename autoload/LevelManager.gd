@@ -1,5 +1,4 @@
 extends Node
-class_name LevelManager
 
 var cor_azul_sinalito: Color = Color("#0056b3")
 var cor_verde_sinalito: Color = Color("#8dc63f")

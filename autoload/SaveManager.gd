@@ -1,5 +1,4 @@
 extends Node
-class_name SaveManager2
 
 const SAVE_PATH = "user://savegame.json"
 

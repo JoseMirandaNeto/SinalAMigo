@@ -49,7 +49,7 @@ func preparar_fase() -> void:
 		_label_pontos.text = "Pares: 0/%d" % _total_pares
 
 	if _dica_label:
-		_dica_label.text = "Fase %d: Associe a letra em Libras ao texto!" % fase_atual
+		_dica_label.text = "Módulo %d: Associe a letra em Libras ao texto!" % fase_atual
 
 func gerar_tabuleiro() -> void:
 	var lista_sinais = obter_sinais_para_partida()
@@ -106,7 +106,7 @@ func obter_sinais_para_partida() -> Array[SinalLibras]:
 			lista.append(sinal)
 
 	if lista.size() == 0:
-		var path_alfabeto_img = "res://ui/palavras/alfabeto.png"
+		var path_alfabeto_img = "res://assets/alfabeto.webp"
 		var atlas_tex = load(path_alfabeto_img) as Texture2D
 
 		var game_manager = get_node_or_null("/root/GameManager")
@@ -138,15 +138,17 @@ func criar_atlas_letra_com_textura(letra: String, atlas_tex: Texture2D) -> Atlas
 	var index = letra.to_upper().unicode_at(0) - 65
 	if index < 0 or index >= 26: return null
 
-	var col = index % 5
-	var row = index / 5
-	
-	var cell_w = 250.8
-	var cell_h = 209.0
+	var colunas = 5
+	var cell_w = atlas_tex.get_width() / colunas
+	var cell_h = atlas_tex.get_height() / 6.0
+	var col = index % colunas
+	var row = index / colunas
+
+	var margem_esquerda = cell_w * 0.38
 
 	var atlas = AtlasTexture.new()
 	atlas.atlas = atlas_tex
-	atlas.region = Rect2(col * cell_w, row * cell_h, cell_w, cell_h)
+	atlas.region = Rect2(col * cell_w + margem_esquerda, row * cell_h, cell_w - margem_esquerda, cell_h)
 	return atlas
 
 func _on_carta_pressionada(carta: Carta) -> void:

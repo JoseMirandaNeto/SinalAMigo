@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="projetoLibras"
-config/version="0.0.1"
+config/version="0.1"
 run/main_scene="uid://d0qxjsxvi8ct7"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 run/max_fps=60
@@ -20,18 +20,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-LevelManager="*uid://csn35ibctk06q"
-GameManager="*uid://bllw8s3be8j2g"
-SaveManager="*uid://byn7ch08jv6w7"
+LevelManager="*uid://b6pelsj0oyf5v"
+GameManager="*uid://dmfgn0whjt3e3"
+SaveManager="*uid://c7krxyufo4460"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-
-[dotnet]
-
-project/assembly_name="projetolibras"
 
 [editor]
 
