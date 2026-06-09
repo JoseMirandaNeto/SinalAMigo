@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 LevelManager="*uid://b6pelsj0oyf5v"
 GameManager="*uid://dmfgn0whjt3e3"
 SaveManager="*uid://c7krxyufo4460"
+PlatformDetector="*res://autoload/PlatformDetector.gd"
 
 [display]
 
