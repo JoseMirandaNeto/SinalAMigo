@@ -4,64 +4,120 @@
 [ext_resource type="Script" uid="uid://dequ1vpafyrtr" path="res://system/MainMenu.gd" id="1_wk0pr"]
 [ext_resource type="Texture2D" uid="uid://dox2q5wt26xoc" path="res://ui/hud/libras-avatar.png" id="4_8uxxo"]
 [ext_resource type="Texture2D" uid="uid://bu8dotembirw8" path="res://ui/hud/Sinalito-avatar.png" id="4_rmr83"]
+[ext_resource type="Script" uid="uid://djthde5b6cy0h" path="res://system/MiniGames/ProgressRing.gd" id="5_ring"]
+[ext_resource type="PackedScene" uid="uid://3fnx2x7pomu8" path="res://ui/popup_layer.tscn" id="6_popup"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.9490196, 0.95686275, 0.972549, 1)
-border_width_bottom = 3
-border_color = Color(0.8784314, 0.8980392, 0.9254902, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header_btn"]
+bg_color = Color(0, 0, 0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8ri8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header_btn_hover"]
+bg_color = Color(0, 0, 0, 0.08)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_profile_avatar"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0, 0.3372549, 0.7019608, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
+border_color = Color(0.372549, 0.505882, 1, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubpvv"]
-bg_color = Color(0.18431373, 0.18431373, 0.23137255, 0.15)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvl_capsule"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.372549, 0.505882, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(1, 1, 1, 0.6)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arv2f"]
-bg_color = Color(0.5529412, 0.7764706, 0.24705882, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.372549, 0.505882, 1, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dkrt"]
-bg_color = Color(0, 0.3372549, 0.7019608, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-shadow_size = 3
-shadow_offset = Vector2(0, 3)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_recomendada_panel"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.701961, 0.819608, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ei257"]
-bg_color = Color(0.18431373, 0.18431373, 0.23137255, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_book_bg"]
+bg_color = Color(0.482353, 0.564706, 0.901961, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk0pr"]
-bg_color = Color(0.10980392, 0.45882353, 0.9411765, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iniciar_btn"]
+content_margin_left = 24.0
+content_margin_top = 6.0
+content_margin_right = 24.0
+content_margin_bottom = 6.0
+bg_color = Color(0.372549, 0.505882, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iniciar_btn_hover"]
+content_margin_left = 24.0
+content_margin_top = 6.0
+content_margin_right = 24.0
+content_margin_bottom = 6.0
+bg_color = Color(0.25098, 0.407843, 0.980392, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dashboard_card"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.929412, 0.921569, 0.921569, 0.8)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dashboard_bar_bg"]
+bg_color = Color(1, 1, 1, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dashboard_bar_fill"]
+bg_color = Color(0.372549, 0.505882, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="MainMenu" type="Control" unique_id=871423339]
 layout_mode = 3
@@ -81,7 +137,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.9607843, 0.96862745, 0.98039216, 1)
+color = Color(0.898039, 0.898039, 0.898039, 1)
 
 [node name="SafeContainer" type="MarginContainer" parent="." unique_id=1740248608]
 layout_mode = 1
@@ -90,235 +146,520 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="MainLayout" type="VBoxContainer" parent="SafeContainer" unique_id=1694723481]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 16
 
-[node name="HeaderPanel" type="PanelContainer" parent="SafeContainer/MainLayout" unique_id=1529329848]
+[node name="Header" type="HBoxContainer" parent="SafeContainer/MainLayout" unique_id=1922805463]
 layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+alignment = 1
 
-[node name="Margin" type="MarginContainer" parent="SafeContainer/MainLayout/HeaderPanel" unique_id=452776890]
+[node name="BtnMenu" type="Button" parent="SafeContainer/MainLayout/Header" unique_id=1406293153]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 10
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_header_btn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_header_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_header_btn_hover")
+text = "☰"
 
-[node name="Header" type="HBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin" unique_id=1922805463]
+[node name="SpacerLeft" type="Control" parent="SafeContainer/MainLayout/Header" unique_id=708890798]
 layout_mode = 2
-theme_override_constants/separation = 10
+size_flags_horizontal = 3
 
-[node name="AvatarContainer" type="PanelContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=944633073]
+[node name="Title" type="Label" parent="SafeContainer/MainLayout/Header" unique_id=1374409983]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_fonts/font = ExtResource("1_t7e0r")
+theme_override_font_sizes/font_size = 30
+text = "SINAL
+AMIGO"
+horizontal_alignment = 1
+
+[node name="SpacerRight" type="Control" parent="SafeContainer/MainLayout/Header" unique_id=677274822]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Mascot" type="TextureRect" parent="SafeContainer/MainLayout/Header" unique_id=837968323]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_p8ri8")
+texture = ExtResource("4_rmr83")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="AvatarImage" type="TextureRect" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/AvatarContainer" unique_id=231752011]
+[node name="ContentLayout" type="HBoxContainer" parent="SafeContainer/MainLayout" unique_id=160860157]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="LeftSection" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout" unique_id=1212253603]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.9
+theme_override_constants/separation = 16
+
+[node name="ProfileCard" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection" unique_id=218623757]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Left" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard" unique_id=1155496349]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="AvatarContainer" type="PanelContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Left" unique_id=1041886921]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_profile_avatar")
+
+[node name="AvatarImage" type="TextureRect" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Left/AvatarContainer" unique_id=358062195]
 layout_mode = 2
 texture = ExtResource("4_8uxxo")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PlayerStats" type="VBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header" unique_id=859734739]
-custom_minimum_size = Vector2(150, 0)
+[node name="LvlCapsule" type="PanelContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Left" unique_id=230962130]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lvl_capsule")
+
+[node name="LevelLabel" type="Label" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Left/LvlCapsule" unique_id=1665643175]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Lvl 4"
+horizontal_alignment = 1
+
+[node name="Right" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard" unique_id=279212106]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 6
 alignment = 1
 
-[node name="PlayerName" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats" unique_id=1303725916]
+[node name="PlayerName" type="Label" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Right" unique_id=819642100]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.12, 0.12, 0.12, 1)
-theme_override_font_sizes/font_size = 16
-text = "Olá, Jogador"
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 32
+text = "Olá, Júlia!"
 
-[node name="LevelInfo" type="HBoxContainer" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats" unique_id=191228383]
+[node name="Subtext" type="Label" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Right" unique_id=324978693]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_font_sizes/font_size = 19
+text = "Continue aprendendo e
+alcançando seus objetivos!"
+autowrap_mode = 2
 
-[node name="LevelLabel" type="Label" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/LevelInfo" unique_id=1847387436]
+[node name="XPContainer" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Right" unique_id=1812769540]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
-theme_override_font_sizes/font_size = 14
-text = "Nível 1"
+theme_override_constants/separation = 2
 
-[node name="ExperienceBar" type="ProgressBar" parent="SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/LevelInfo" unique_id=1875132664]
-custom_minimum_size = Vector2(0, 14)
+[node name="XPInfo" type="Label" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Right/XPContainer" unique_id=1210529703]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-theme_override_styles/background = SubResource("StyleBoxFlat_ubpvv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_arv2f")
-value = 40.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_font_sizes/font_size = 18
+text = "1.250 / 2.000 XP"
 
-[node name="CenterLayout" type="VBoxContainer" parent="SafeContainer/MainLayout" unique_id=1502429602]
+[node name="XPBar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Right/XPContainer" unique_id=597526604]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+value = 62.5
+show_percentage = false
+
+[node name="RecomendadaCard" type="PanelContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection" unique_id=785785708]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 2
-alignment = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_recomendada_panel")
 
-[node name="LogoContainer" type="VBoxContainer" parent="SafeContainer/MainLayout/CenterLayout" unique_id=1314564027]
+[node name="VBox" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard" unique_id=1261673469]
 layout_mode = 2
-theme_override_constants/separation = 1
+theme_override_constants/separation = 10
 
-[node name="Logo" type="Label" parent="SafeContainer/MainLayout/CenterLayout/LogoContainer" unique_id=311878401]
+[node name="CardTitle" type="Label" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox" unique_id=1402656874]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.3372549, 0.7019608, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
+theme_override_colors/font_color = Color(0.407843, 0.145098, 0.827451, 1)
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 36
-text = "Sinal Amigo"
+theme_override_font_sizes/font_size = 22
+text = "Lição recomendada"
 horizontal_alignment = 1
 
-[node name="Slogan" type="Label" parent="SafeContainer/MainLayout/CenterLayout/LogoContainer" unique_id=1841027090]
+[node name="Content" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox" unique_id=224315073]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
-theme_override_font_sizes/font_size = 13
-text = "Aprenda Libras de forma divertida!"
-horizontal_alignment = 1
-
-[node name="SinalitoContainer" type="HBoxContainer" parent="SafeContainer/MainLayout/CenterLayout" unique_id=1959402640]
-layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Sinalito" type="TextureRect" parent="SafeContainer/MainLayout/CenterLayout/SinalitoContainer" unique_id=1989049383]
-custom_minimum_size = Vector2(270, 270)
+[node name="Left" type="PanelContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content" unique_id=309344313]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-texture = ExtResource("4_rmr83")
-expand_mode = 1
-stretch_mode = 5
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_book_bg")
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="SafeContainer/MainLayout/CenterLayout" unique_id=861063197]
-custom_minimum_size = Vector2(260, 0)
+[node name="BookEmoji" type="Label" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content/Left" unique_id=538112641]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 8
+theme_override_font_sizes/font_size = 46
+text = "📖"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BtnJogar" type="Button" parent="SafeContainer/MainLayout/CenterLayout/ButtonsContainer" unique_id=1867331939]
-custom_minimum_size = Vector2(0, 42)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_0dkrt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ei257")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wk0pr")
-text = "JOGAR"
-
-[node name="BtnConfig" type="Button" parent="SafeContainer/MainLayout/CenterLayout/ButtonsContainer" unique_id=2001924106]
-custom_minimum_size = Vector2(0, 42)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_0dkrt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ei257")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wk0pr")
-text = "CONFIGURAÇÕES"
-
-[node name="FooterLayout" type="HBoxContainer" parent="SafeContainer/MainLayout" unique_id=909029123]
-layout_mode = 2
-
-[node name="Footer" type="Label" parent="SafeContainer/MainLayout/FooterLayout" unique_id=1831572356]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
-theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 12
-text = "SENAC NH - Turma 8562"
-
-[node name="Spacer" type="Control" parent="SafeContainer/MainLayout/FooterLayout" unique_id=1300020803]
+[node name="Right" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content" unique_id=2075652001]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Version" type="Label" parent="SafeContainer/MainLayout/FooterLayout" unique_id=1592038222]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
-theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 10
-text = "Versão 0.0.1"
-
-[node name="PopupLayer" type="CanvasLayer" parent="." unique_id=2142527658]
-layer = 10
-visible = false
-
-[node name="Overlay" type="ColorRect" parent="PopupLayer" unique_id=139577259]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
-
-[node name="PopupContainer" type="CenterContainer" parent="PopupLayer" unique_id=955106339]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PopupPanel" type="PanelContainer" parent="PopupLayer/PopupContainer" unique_id=737624106]
-custom_minimum_size = Vector2(340, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0dkrt")
-
-[node name="Margin" type="MarginContainer" parent="PopupLayer/PopupContainer/PopupPanel" unique_id=2032159685]
-layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 20
-
-[node name="PopupLayout" type="VBoxContainer" parent="PopupLayer/PopupContainer/PopupPanel/Margin" unique_id=687140466]
-layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="SinalitoPopup" type="TextureRect" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=346489757]
-custom_minimum_size = Vector2(100, 100)
+[node name="LicaoTitle" type="Label" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content/Right" unique_id=772046988]
 layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("4_rmr83")
-expand_mode = 1
-stretch_mode = 5
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_fonts/font = ExtResource("1_t7e0r")
+theme_override_font_sizes/font_size = 26
+text = "Alfabeto em libras"
 
-[node name="Titulo" type="Label" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=1416327075]
+[node name="ProgressBar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content/Right" unique_id=1483533190]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+value = 75.0
+show_percentage = false
+
+[node name="CompletoLabel" type="Label" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content/Right" unique_id=1314405926]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "75% completo"
+
+[node name="HBoxBtn" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content/Right" unique_id=1629912013]
+layout_mode = 2
+alignment = 2
+
+[node name="BtnIniciar" type="Button" parent="SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content/Right/HBoxBtn" unique_id=8632777]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 22
-text = "Olá! Eu me chamo Sinalito!"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_iniciar_btn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iniciar_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iniciar_btn_hover")
+text = "Iniciar"
 
-[node name="Descricao" type="Label" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=719252226]
+[node name="RightSection" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout" unique_id=1388062473]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.88, 1, 1)
-theme_override_font_sizes/font_size = 13
-text = "Sinal Amigo é um jogo educativo para aprender Libras de forma divertida! Memorize sinais, complete fases e evolua na trilha do aprendizado."
-horizontal_alignment = 1
-autowrap_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
 
-[node name="NomeInput" type="LineEdit" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=640100335]
-custom_minimum_size = Vector2(0, 40)
+[node name="Dashboard" type="GridContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection" unique_id=249705966]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-placeholder_text = "Digite seu nome aqui..."
-alignment = 1
-max_length = 20
+size_flags_vertical = 3
+columns = 2
 
-[node name="BtnConfirmar" type="Button" parent="PopupLayer/PopupContainer/PopupPanel/Margin/PopupLayout" unique_id=793087693]
-custom_minimum_size = Vector2(0, 44)
+[node name="MissoesCard" type="PanelContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard" unique_id=1160854402]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dashboard_card")
+
+[node name="VBox" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard" unique_id=425022728]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox" unique_id=533221083]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_arv2f")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wk0pr")
-text = "VAMOS LÁ!"
+theme_override_font_sizes/font_size = 24
+text = "Missões"
+horizontal_alignment = 1
+
+[node name="Item1" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox" unique_id=157715160]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item1" unique_id=2137188207]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 16
+text = "Complete 3 lições"
+
+[node name="Row" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item1" unique_id=697784901]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Bar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item1/Row" unique_id=1509319704]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dashboard_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dashboard_bar_fill")
+value = 66.6
+show_percentage = false
+
+[node name="Num" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item1/Row" unique_id=1129102457]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "2/3"
+
+[node name="Item2" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox" unique_id=988313638]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item2" unique_id=1211629982]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 16
+text = "Acertar 10 exercícios"
+
+[node name="Row" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item2" unique_id=1578657689]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Bar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item2/Row" unique_id=1213581030]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dashboard_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dashboard_bar_fill")
+value = 70.0
+show_percentage = false
+
+[node name="Num" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item2/Row" unique_id=1560978716]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "7/10"
+
+[node name="Item3" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox" unique_id=2014412739]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item3" unique_id=2143561260]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 16
+text = "Estude por 15 minutos"
+
+[node name="Row" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item3" unique_id=901740076]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Bar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item3/Row" unique_id=2037149178]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dashboard_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dashboard_bar_fill")
+value = 66.6
+show_percentage = false
+
+[node name="Num" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox/Item3/Row" unique_id=389797799]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "10/15"
+
+[node name="VerTodas" type="Button" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/MissoesCard/VBox" unique_id=1388381815]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_header_btn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_header_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_header_btn_hover")
+text = "Ver todas"
+
+[node name="ProgressoCard" type="PanelContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard" unique_id=1697476082]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dashboard_card")
+
+[node name="VBox" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard" unique_id=1954433942]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox" unique_id=1639833679]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_fonts/font = ExtResource("1_t7e0r")
+theme_override_font_sizes/font_size = 24
+text = "Seu progresso"
+horizontal_alignment = 1
+
+[node name="RingCenter" type="CenterContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox" unique_id=278009960]
+layout_mode = 2
+
+[node name="Ring" type="Control" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/RingCenter" unique_id=1895214542]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+script = ExtResource("5_ring")
+
+[node name="RingText" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/RingCenter/Ring" unique_id=518849846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.372549, 0.505882, 1, 1)
+theme_override_fonts/font = ExtResource("1_t7e0r")
+theme_override_font_sizes/font_size = 26
+text = "75%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Metric1" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox" unique_id=439769642]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="LabelRow" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric1" unique_id=1832445220]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric1/LabelRow" unique_id=577550095]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "Expressão facial"
+
+[node name="Spacer" type="Control" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric1/LabelRow" unique_id=543298566]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Num" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric1/LabelRow" unique_id=865255222]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 14
+text = "80%"
+
+[node name="Bar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric1" unique_id=1718255613]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dashboard_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dashboard_bar_fill")
+value = 80.0
+show_percentage = false
+
+[node name="Metric2" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox" unique_id=639291346]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="LabelRow" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric2" unique_id=581681553]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric2/LabelRow" unique_id=1293452726]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "Prática"
+
+[node name="Spacer" type="Control" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric2/LabelRow" unique_id=1781879307]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Num" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric2/LabelRow" unique_id=1690099361]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 14
+text = "85%"
+
+[node name="Bar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric2" unique_id=1568119477]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dashboard_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dashboard_bar_fill")
+value = 85.0
+show_percentage = false
+
+[node name="Metric3" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox" unique_id=1687112989]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="LabelRow" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric3" unique_id=101383103]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric3/LabelRow" unique_id=659041405]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "Sinais"
+
+[node name="Spacer" type="Control" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric3/LabelRow" unique_id=1578633649]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Num" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric3/LabelRow" unique_id=1605028733]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 14
+text = "85%"
+
+[node name="Bar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric3" unique_id=1451113562]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dashboard_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dashboard_bar_fill")
+value = 85.0
+show_percentage = false
+
+[node name="Metric4" type="VBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox" unique_id=1285620537]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="LabelRow" type="HBoxContainer" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric4" unique_id=954682147]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric4/LabelRow" unique_id=913512411]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "Compreensão"
+
+[node name="Spacer" type="Control" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric4/LabelRow" unique_id=1209642928]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Num" type="Label" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric4/LabelRow" unique_id=194557038]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_font_sizes/font_size = 14
+text = "75%"
+
+[node name="Bar" type="ProgressBar" parent="SafeContainer/MainLayout/ContentLayout/RightSection/Dashboard/ProgressoCard/VBox/Metric4" unique_id=257313024]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dashboard_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dashboard_bar_fill")
+value = 75.0
+show_percentage = false
+
+[node name="VerTodas2" type="Button" parent="." unique_id=1698840260]
+layout_mode = 0
+offset_left = 1034.0
+offset_top = 608.0
+offset_right = 1141.0
+offset_bottom = 632.0
+size_flags_horizontal = 8
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_header_btn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_header_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_header_btn_hover")
+text = "sac ****_****"
+
+[node name="PopupLayer" parent="." unique_id=694579983 instance=ExtResource("6_popup")]
+visible = false

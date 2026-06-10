@@ -13,22 +13,25 @@ config_version=5
 config/name="projetoLibras"
 config/version="0.1"
 run/main_scene="uid://d0qxjsxvi8ct7"
-config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 run/max_fps=60
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
-LevelManager="*uid://b6pelsj0oyf5v"
-GameManager="*uid://dmfgn0whjt3e3"
-SaveManager="*uid://c7krxyufo4460"
+LevelManager="*res://autoload/LevelManager.gd"
+GameManager="*res://autoload/GameManager.gd"
+SaveManager="*res://autoload/SaveManager.gd"
 PlatformDetector="*res://autoload/PlatformDetector.gd"
 
 [display]
 
+window/size/window_width_override=1024
+window/size/window_height_override=600
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/handheld/orientation="landscape"
 
 [dotnet]
 

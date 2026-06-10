@@ -1,84 +1,114 @@
 [gd_scene format=3 uid="uid://hq556ufvuakv"]
 
+[ext_resource type="Script" uid="uid://d2lsirlb80jlq" path="res://system/Card.gd" id="1_3bcqa"]
 [ext_resource type="Texture2D" uid="uid://cyhf0vjeob5eh" path="res://ui/hud/_libras.png" id="1_4vr12"]
-[ext_resource type="Script" uid="uid://cs0v8rr71e0q8" path="res://system/Card.gd" id="1_ghtsa"]
+[ext_resource type="FontFile" uid="uid://bcph10er1nc2r" path="res://impact.ttf" id="1_t7e0r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vr12"]
 bg_color = Color(0.10980392, 0.45882353, 0.9411765, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-shadow_size = 10
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_size = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bcqa"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_img_bg"]
+bg_color = Color(1, 1, 1, 0.15)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 corner_detail = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghtsa"]
-content_margin_left = 5.0
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_transparent"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_jogar"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 0.25)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_jogar_hover"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
 [node name="Card" type="PanelContainer" unique_id=515026044]
-offset_right = 358.0
-offset_bottom = 354.0
+custom_minimum_size = Vector2(220, 0)
 pivot_offset = Vector2(179, 195)
 theme_override_styles/panel = SubResource("StyleBoxFlat_4vr12")
-script = ExtResource("1_ghtsa")
+script = ExtResource("1_3bcqa")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=655054356]
+[node name="Margin" type="MarginContainer" parent="." unique_id=306097935]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="AvatarContainer" type="PanelContainer" parent="VBoxContainer" unique_id=744787138]
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin" unique_id=655054356]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="AvatarContainer" type="PanelContainer" parent="Margin/VBoxContainer" unique_id=744787138]
 clip_children = 1
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_3bcqa")
-
-[node name="Icon" type="TextureRect" parent="VBoxContainer/AvatarContainer" unique_id=114321357]
-custom_minimum_size = Vector2(350, 150)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("1_4vr12")
-expand_mode = 1
-flip_h = true
-
-[node name="ModeTitle" type="Label" parent="VBoxContainer" unique_id=860054100]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_ghtsa")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1898579338]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_horizontal = 0
-horizontal_scroll_mode = 0
-
-[node name="Description" type="Label" parent="VBoxContainer/ScrollContainer" unique_id=1348037877]
-custom_minimum_size = Vector2(350, 100)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_ghtsa")
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_img_bg")
+
+[node name="Icon" type="TextureRect" parent="Margin/VBoxContainer/AvatarContainer" unique_id=114321357]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_4vr12")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="ModeTitle" type="Label" parent="Margin/VBoxContainer" unique_id=860054100]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_t7e0r")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_transparent")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Margin/VBoxContainer" unique_id=1348037877]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_transparent")
+horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="SelectButton" type="Button" parent="VBoxContainer" unique_id=2083288304]
-custom_minimum_size = Vector2(340, 80)
+[node name="SelectButton" type="Button" parent="Margin/VBoxContainer" unique_id=2083288304]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
-size_flags_horizontal = 4
-mouse_filter = 0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_jogar")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_jogar")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_jogar_hover")
 text = "JOGAR"
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=683801140]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/margin_top = 10
-
-[connection signal="pressed" from="VBoxContainer/SelectButton" to="." method="OnBtnSelectPressed"]
+[connection signal="pressed" from="Margin/VBoxContainer/SelectButton" to="." method="_on_btn_select_pressed"]

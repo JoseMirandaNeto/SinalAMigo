@@ -10,6 +10,8 @@ var alfabeto_completo: Array = []
 var nivel_atual: int = 1
 var pontuacao_total: int = 0
 
+signal save_carregado
+
 enum TipoMiniGame { MEMORIA, ATAQUE, SOLETRA, DETETIVE }
 
 var _fases_config: Dictionary = {
@@ -36,6 +38,8 @@ func carregar_save_inicial() -> void:
 	var save_manager = get_node_or_null("/root/SaveManager")
 	if save_manager != null:
 		save_manager.carregar_jogo()
+
+	save_carregado.emit()
 
 func carregar_fase(numero_casa: int) -> void:
 	var tipo = TipoMiniGame.MEMORIA
@@ -85,6 +89,17 @@ func completar_fase_atual() -> void:
 		printerr("LevelManager: SaveManager não encontrado para salvar.")
 
 func voltar_para_trilha() -> void:
+	var game_manager = get_node_or_null("/root/GameManager")
+	
+	# Se o minigame foi iniciado do GameModeSelection, volta para lá
+	if game_manager and game_manager.minigame_origem == "modo_selecao":
+		var path = "res://scenes/game_mode_selection.tscn"
+		var error = get_tree().change_scene_to_file(path)
+		if error != OK:
+			printerr("LevelManager: Erro ao retornar para modo seleção: %d" % error)
+		return
+	
+	# Caso contrário, volta para a Trilha (padrão)
 	var path = "res://scenes/minigames/Trilha/Trilha.tscn"
 	var error = get_tree().change_scene_to_file(path)
 	if error != OK:

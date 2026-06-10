@@ -9,7 +9,7 @@ var _label_pontos: Label
 var _label_tempo: Label
 var _dica_label: Label
 
-var _selecionadas: Array[Carta] = []
+var _selecionadas: Array = []
 var _pares_encontrados: int = 0
 var _total_pares: int = 4
 
@@ -72,19 +72,32 @@ func gerar_tabuleiro() -> void:
 			_card_grid.columns = 4
 
 		for info in cartas_info:
-			var nova_carta = carta_prefab.instantiate() as Carta
+			var nova_carta = carta_prefab.instantiate()
 			nova_carta.id = info.id
 			
 			var img: Texture2D = null
 			var mostrar_imagem = false
-			var txt = info.sinal.nome_da_palavra
+			var txt = ""
+			if "NomeDaPalavra" in info.sinal:
+				txt = info.sinal.NomeDaPalavra
+			else:
+				txt = info.sinal.nome_da_palavra
 
 			if info.eh_imagem:
-				img = info.sinal.ilustracao
+				if "Ilustracao" in info.sinal:
+					img = info.sinal.Ilustracao
+				else:
+					img = info.sinal.ilustracao
 				mostrar_imagem = true
 			else:
-				if info.sinal.imagem_significado != null:
-					img = info.sinal.imagem_significado
+				var img_sig = null
+				if "ImagemSignificado" in info.sinal:
+					img_sig = info.sinal.ImagemSignificado
+				else:
+					img_sig = info.sinal.imagem_significado
+				
+				if img_sig != null:
+					img = img_sig
 					mostrar_imagem = true
 				else:
 					mostrar_imagem = false
@@ -106,7 +119,7 @@ func obter_sinais_para_partida() -> Array[SinalLibras]:
 			lista.append(sinal)
 
 	if lista.size() == 0:
-		var path_alfabeto_img = "res://assets/alfabeto.webp"
+		var path_alfabeto_img = "res://assets/alfabetolibras.png"
 		var atlas_tex = load(path_alfabeto_img) as Texture2D
 
 		var game_manager = get_node_or_null("/root/GameManager")
@@ -124,12 +137,22 @@ func obter_sinais_para_partida() -> Array[SinalLibras]:
 		for i in range(letras_necessarias):
 			var letra = todas_letras[i]
 			var mock_sinal = SinalLibras.new()
-			mock_sinal.nome_da_palavra = letra
 			
-			if atlas_tex:
-				mock_sinal.ilustracao = criar_atlas_letra_com_textura(letra, atlas_tex)
+			if "NomeDaPalavra" in mock_sinal:
+				mock_sinal.NomeDaPalavra = letra
 			else:
-				mock_sinal.ilustracao = load("res://ui/hud/libras-avatar.png") as Texture2D
+				mock_sinal.nome_da_palavra = letra
+			
+			var ilust = null
+			if atlas_tex:
+				ilust = criar_atlas_letra_com_textura(letra, atlas_tex)
+			else:
+				ilust = load("res://ui/hud/libras-avatar.png") as Texture2D
+				
+			if "Ilustracao" in mock_sinal:
+				mock_sinal.Ilustracao = ilust
+			else:
+				mock_sinal.ilustracao = ilust
 			lista.append(mock_sinal)
 
 	return lista
@@ -151,7 +174,7 @@ func criar_atlas_letra_com_textura(letra: String, atlas_tex: Texture2D) -> Atlas
 	atlas.region = Rect2(col * cell_w + margem_esquerda, row * cell_h, cell_w - margem_esquerda, cell_h)
 	return atlas
 
-func _on_carta_pressionada(carta: Carta) -> void:
+func _on_carta_pressionada(carta) -> void:
 	if carta.virada or carta.combinada or _selecionadas.size() >= 2 or not _jogo_ativo: return
 
 	carta.virar(true)

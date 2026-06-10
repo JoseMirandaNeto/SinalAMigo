@@ -4,7 +4,7 @@ class_name GameModeSelection
 var _btn_voltar: Button
 
 func _ready() -> void:
-	_btn_voltar = get_node_or_null("Button") as Button
+	_btn_voltar = get_node_or_null("SafeContainer/MainLayout/Header/BtnVoltar") as Button
 
 func _on_btn_voltar_pressed() -> void:
 	var menu_path = "res://ui/main_menu.tscn"

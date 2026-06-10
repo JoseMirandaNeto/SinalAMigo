@@ -14,8 +14,8 @@ var _safe_container: MarginContainer
 const SAVE_PATH = "user://savegame.json"
 
 func _ready() -> void:
-	_btn_jogar = get_node_or_null("SafeContainer/MainLayout/CenterLayout/ButtonsContainer/BtnJogar") as Button
-	_btn_config = get_node_or_null("SafeContainer/MainLayout/CenterLayout/ButtonsContainer/BtnConfig") as Button
+	_btn_jogar = get_node_or_null("SafeContainer/MainLayout/ContentLayout/LeftSection/RecomendadaCard/VBox/Content/Right/HBoxBtn/BtnIniciar") as Button
+	_btn_config = get_node_or_null("SafeContainer/MainLayout/Header/BtnMenu") as Button
 	_safe_container = get_node_or_null("SafeContainer") as MarginContainer
 
 	if _btn_jogar: _btn_jogar.pressed.connect(_on_btn_jogar_pressed)
@@ -23,8 +23,8 @@ func _ready() -> void:
 
 	print("MainMenu: Interface de Libras carregada com sucesso!")
 
-	_logo = get_node_or_null("SafeContainer/MainLayout/CenterLayout/LogoContainer/Logo") as Label
-	_sinalito = get_node_or_null("SafeContainer/MainLayout/CenterLayout/SinalitoContainer/Sinalito") as TextureRect
+	_logo = get_node_or_null("SafeContainer/MainLayout/Header/Title") as Label
+	_sinalito = get_node_or_null("SafeContainer/MainLayout/Header/Mascot") as TextureRect
 
 	if _logo:
 		_logo.modulate = Color(1, 1, 1, 0)
@@ -35,10 +35,6 @@ func _ready() -> void:
 		_sinalito.modulate = Color(1, 1, 1, 0)
 		var fade_mascote = create_tween().bind_node(self)
 		fade_mascote.tween_property(_sinalito, "modulate:a", 1.0, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_delay(0.5)
-
-		var bob_tween = create_tween().bind_node(self).set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		bob_tween.tween_property(_sinalito, "position:y", _sinalito.position.y - 8.0, 1.2)
-		bob_tween.tween_property(_sinalito, "position:y", _sinalito.position.y, 1.2)
 
 	verificar_nome_jogador()
 
@@ -149,27 +145,30 @@ func _on_btn_confirmar_pressed() -> void:
 	print("MainMenu: Nome do jogador definido como '%s'" % nome)
 
 func atualizar_stats_interface() -> void:
-	var label_name = get_node_or_null("SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/PlayerName") as Label
-	var label_level = get_node_or_null("SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/LevelInfo/LevelLabel") as Label
-	var exp_bar = get_node_or_null("SafeContainer/MainLayout/HeaderPanel/Margin/Header/PlayerStats/LevelInfo/ExperienceBar") as ProgressBar
+	var label_name = get_node_or_null("SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Right/PlayerName") as Label
+	var label_level = get_node_or_null("SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Left/LvlCapsule/LevelLabel") as Label
+	var exp_bar = get_node_or_null("SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Right/XPContainer/XPBar") as ProgressBar
+	var xp_info = get_node_or_null("SafeContainer/MainLayout/ContentLayout/LeftSection/ProfileCard/Right/XPContainer/XPInfo") as Label
 
 	var game_manager = get_node_or_null("/root/GameManager")
 	var level_manager = get_node_or_null("/root/LevelManager")
 
 	if game_manager != null and level_manager != null:
 		var total_xp = level_manager.pontuacao_total
-		var player_level = (total_xp / 500) + 1
+		var player_level = (total_xp / 500) + 4
 		var current_level_xp = total_xp % 500
 
 		game_manager.nivel_jogador = player_level
 		game_manager.exp_jogador = current_level_xp
 
 		if label_name:
-			label_name.text = "Olá, " + game_manager.nome_jogador
+			label_name.text = "Olá, " + game_manager.nome_jogador + "!"
 		if label_level:
-			label_level.text = "Nível " + str(player_level)
+			label_level.text = "Lvl " + str(player_level)
 		if exp_bar:
 			exp_bar.value = (float(current_level_xp) / 500.0) * 100.0
+		if xp_info:
+			xp_info.text = str(current_level_xp) + " / 500 XP"
 
 func _on_btn_jogar_pressed() -> void:
 	var scene_path = "res://scenes/game_mode_selection.tscn"

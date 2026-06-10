@@ -9,158 +9,145 @@ signal casa_pressionada(numero_fase: int)
 		if is_inside_tree():
 			atualizar_texto_label()
 
-var _botao_base: PanelContainer
-var _numero_label: Label
-var _badge_status: PanelContainer
-var _icone_cadeado: TextureRect
-var _check_label: Label
-var _icone_fase: TextureRect
-
-var _cor_fundo_bloqueada: Color = Color("#e0e0e0")
-var _cor_fundo_liberada: Color = Color("#ffffff")
-var _cor_fundo_completada: Color = Color("#d4edda")
-
-var _cor_borda_bloqueada: Color = Color("#bdbdbd")
-var _cor_borda_liberada: Color = Color("#f0a500")
-var _cor_borda_completada: Color = Color("#8dc63f")
-
-var _cor_badge_bloqueado: Color = Color("#9e9e9e")
-var _cor_badge_completo: Color = Color("#8dc63f")
+var _botao: PanelContainer
+var _icon_label: Label
+var _fase_label: Label
+var _vbox: VBoxContainer
+var _circulo: StyleBoxFlat
+var _tween_pulso: Tween
 
 enum EstadoCasa { BLOQUEADA, LIBERADA, COMPLETADA }
 var estado: int = EstadoCasa.BLOQUEADA
 
 func _ready() -> void:
-	_botao_base = get_node_or_null("BotaoBase") as PanelContainer
-	_numero_label = get_node_or_null("NumeroLabel") as Label
-	_badge_status = get_node_or_null("BadgeStatus") as PanelContainer
-	_icone_cadeado = get_node_or_null("BadgeStatus/IconeCadeado") as TextureRect
-	_check_label = get_node_or_null("BadgeStatus/CheckLabel") as Label
-	_icone_fase = get_node_or_null("BotaoBase/MarginContainer/IconeFase") as TextureRect
+	_botao = get_node_or_null("Botao") as PanelContainer
+	_vbox = get_node_or_null("Botao/Centro/VBox") as VBoxContainer
+	_icon_label = get_node_or_null("Botao/Centro/VBox/IconLabel") as Label
+	_fase_label = get_node_or_null("Botao/Centro/VBox/FaseLabel") as Label
+
+	var centro = get_node_or_null("Botao/Centro") as Control
+	if centro:
+		centro.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if _vbox:
+		_vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if _icon_label:
+		_icon_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if _fase_label:
+		_fase_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	atualizar_texto_label()
-	configurar_icone_fase()
-
-	if _botao_base:
-		_botao_base.mouse_filter = Control.MOUSE_FILTER_STOP
-		_botao_base.gui_input.connect(_on_botao_base_gui_input)
-		_botao_base.mouse_entered.connect(_on_mouse_entered)
-		_botao_base.mouse_exited.connect(_on_mouse_exited)
+	if _botao:
+		_circulo = _botao.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
+		_botao.mouse_filter = Control.MOUSE_FILTER_STOP
+		_botao.gui_input.connect(_on_gui_input)
 
 	atualizar_estado_visual()
 
-func configurar_icone_fase() -> void:
-	if _icone_fase == null: return
-
-	var path_icone = "res://ui/hud/libras-avatar.png"
-
-	match numero_fase:
-		1:
-			path_icone = "res://ui/hud/libras-avatar.png"
-		2:
-			path_icone = "res://ui/hud/Sinalito-avatar.png"
-		_:
-			path_icone = "res://ui/hud/_libras.png"
-
-	var texture = load(path_icone) as Texture2D
-	if texture:
-		_icone_fase.texture = texture
-
 func atualizar_texto_label() -> void:
-	if _numero_label:
-		_numero_label.text = "Módulo " + str(numero_fase)
+	if _fase_label:
+		_fase_label.text = "FASE " + str(numero_fase)
 
 func definir_estado(novo_estado: int) -> void:
 	estado = novo_estado
+	if _tween_pulso and _tween_pulso.is_valid():
+		_tween_pulso.kill()
+		_tween_pulso = null
 	atualizar_estado_visual()
 
 func atualizar_estado_visual() -> void:
-	if _botao_base == null or _badge_status == null or _icone_cadeado == null or _check_label == null or _numero_label == null: return
+	if not _botao or not _circulo: return
 
-	var estilo_base = _botao_base.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
-	var estilo_badge = _badge_status.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
-
-	atualizar_texto_label()
+	# Clean up any existing ClockDrawer instance
+	if _vbox:
+		for child in _vbox.get_children():
+			if child is ClockDrawer:
+				child.queue_free()
 
 	match estado:
-		EstadoCasa.BLOQUEADA:
-			estilo_base.bg_color = _cor_fundo_bloqueada
-			estilo_base.border_color = _cor_borda_bloqueada
-			estilo_base.border_width_bottom = 4
-			if _icone_fase: _icone_fase.modulate = Color(1, 1, 1, 0.3)
-			_numero_label.modulate = Color(0.5, 0.5, 0.5, 0.6)
-
-			_badge_status.visible = true
-			estilo_badge.bg_color = _cor_badge_bloqueado
-			_icone_cadeado.visible = true
-			_check_label.visible = false
+		EstadoCasa.COMPLETADA:
+			_circulo.bg_color = Color("#8dc63f") # Verde Sinalito official
+			_circulo.border_color = Color("#5F81FF") # Trail connection blue
+			_circulo.border_width_left = 6
+			_circulo.border_width_top = 6
+			_circulo.border_width_right = 6
+			_circulo.border_width_bottom = 6
+			
+			if _icon_label:
+				_icon_label.text = "✓"
+				_icon_label.add_theme_font_size_override("font_size", 38)
+				_icon_label.modulate = Color("#151515")
+				_icon_label.visible = true
+			if _fase_label:
+				_fase_label.text = "FASE " + str(numero_fase)
+				_fase_label.add_theme_font_size_override("font_size", 14)
+				_fase_label.modulate = Color("#151515")
+				_fase_label.visible = true
+			scale = Vector2(1.0, 1.0)
 
 		EstadoCasa.LIBERADA:
-			estilo_base.bg_color = _cor_fundo_liberada
-			estilo_base.border_color = _cor_borda_liberada
-			estilo_base.border_width_bottom = 6
-			if _icone_fase: _icone_fase.modulate = Color(1, 1, 1, 1)
-			_numero_label.modulate = Color(0.1, 0.45, 0.85, 1)
+			_circulo.bg_color = Color("#FFC107") # Yellow
+			_circulo.border_color = Color("#5F81FF") # Trail connection blue
+			_circulo.border_width_left = 6
+			_circulo.border_width_top = 6
+			_circulo.border_width_right = 6
+			_circulo.border_width_bottom = 6
+			
+			if _icon_label:
+				_icon_label.visible = false
+			if _fase_label:
+				_fase_label.visible = false
+			
+			# Add clock drawer dynamically to keep the clean vector clock centered
+			var clock = ClockDrawer.new()
+			_vbox.add_child(clock)
+			_vbox.move_child(clock, 0) # Put on top / centered
+			
+			scale = Vector2(1.1, 1.1)
+			animar_pulso()
 
-			_badge_status.visible = false
+		EstadoCasa.BLOQUEADA:
+			_circulo.bg_color = Color("#1468EE") # Blue
+			_circulo.border_color = Color("#5F81FF") # Light blue border
+			_circulo.border_width_left = 6
+			_circulo.border_width_top = 6
+			_circulo.border_width_right = 6
+			_circulo.border_width_bottom = 6
+			
+			if _icon_label:
+				_icon_label.visible = false
+			if _fase_label:
+				_fase_label.text = "FASE " + str(numero_fase)
+				_fase_label.add_theme_font_size_override("font_size", 18)
+				_fase_label.modulate = Color("#151515")
+				_fase_label.visible = true
+			scale = Vector2(0.95, 0.95)
 
-			if not _botao_base.is_connected("draw", _animar_pulsacao):
-				_animar_pulsacao()
+	_botao.add_theme_stylebox_override("panel", _circulo)
 
-		EstadoCasa.COMPLETADA:
-			estilo_base.bg_color = _cor_fundo_completada
-			estilo_base.border_color = _cor_borda_completada
-			estilo_base.border_width_bottom = 4
-			if _icone_fase: _icone_fase.modulate = Color(1, 1, 1, 0.9)
-			_numero_label.modulate = Color(0.15, 0.55, 0.25, 1)
+func animar_pulso() -> void:
+	_tween_pulso = create_tween().bind_node(self).set_loops()
+	_tween_pulso.tween_property(self, "scale", Vector2(1.15, 1.15), 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_tween_pulso.tween_property(self, "scale", Vector2(1.1, 1.1), 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-			_badge_status.visible = true
-			estilo_badge.bg_color = _cor_badge_completo
-			_icone_cadeado.visible = false
-			_check_label.visible = true
-
-	_botao_base.add_theme_stylebox_override("panel", estilo_base)
-	_badge_status.add_theme_stylebox_override("panel", estilo_badge)
-
-func _animar_pulsacao() -> void:
-	if estado != EstadoCasa.LIBERADA: return
-	var tween = create_tween().bind_node(self).set_loops()
-	tween.tween_property(_botao_base, "scale", Vector2(1.05, 1.05), 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(_botao_base, "scale", Vector2(1.0, 1.0), 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
-func _on_botao_base_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if estado != EstadoCasa.BLOQUEADA:
-				print("CasaTrilha: Iniciando lição da casa %d!" % numero_fase)
-				casa_pressionada.emit(numero_fase)
-				animar_clique()
-			else:
-				print("CasaTrilha: Nível %d trancado." % numero_fase)
-				animar_erro()
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if estado != EstadoCasa.BLOQUEADA:
+			casa_pressionada.emit(numero_fase)
+			animar_clique()
+		else:
+			animar_erro()
 
 func animar_clique() -> void:
+	if not _botao: return
 	var tween = create_tween().bind_node(self).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	_botao_base.pivot_offset = _botao_base.size / 2.0
-	tween.tween_property(_botao_base, "scale", Vector2(0.9, 0.9), 0.08)
-	tween.tween_property(_botao_base, "scale", Vector2(1.0, 1.0), 0.12)
+	tween.tween_property(_botao, "scale", Vector2(0.9, 0.9), 0.08)
+	tween.tween_property(_botao, "scale", Vector2(1.0, 1.0), 0.12)
 
 func animar_erro() -> void:
+	if not _botao: return
 	var tween = create_tween().bind_node(self).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	_botao_base.pivot_offset = _botao_base.size / 2.0
-	tween.tween_property(_botao_base, "position:x", _botao_base.position.x - 6, 0.05)
-	tween.tween_property(_botao_base, "position:x", _botao_base.position.x + 6, 0.05)
-	tween.tween_property(_botao_base, "position:x", _botao_base.position.x - 3, 0.05)
-	tween.tween_property(_botao_base, "position:x", _botao_base.position.x, 0.05)
-
-func _on_mouse_entered() -> void:
-	if estado != EstadoCasa.BLOQUEADA:
-		var tween = create_tween().bind_node(self).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-		_botao_base.pivot_offset = _botao_base.size / 2.0
-		tween.tween_property(_botao_base, "scale", Vector2(1.1, 1.1), 0.15)
-
-func _on_mouse_exited() -> void:
-	if estado != EstadoCasa.BLOQUEADA:
-		var tween = create_tween().bind_node(self).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-		_botao_base.pivot_offset = _botao_base.size / 2.0
-		tween.tween_property(_botao_base, "scale", Vector2(1.0, 1.0), 0.15)
+	var px = _botao.position.x
+	tween.tween_property(_botao, "position:x", px - 6, 0.05)
+	tween.tween_property(_botao, "position:x", px + 6, 0.05)
+	tween.tween_property(_botao, "position:x", px - 3, 0.05)
+	tween.tween_property(_botao, "position:x", px, 0.05)

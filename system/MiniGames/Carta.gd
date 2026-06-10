@@ -1,7 +1,7 @@
 extends TextureButton
 class_name Carta
 
-@export var id: int = 0
+var id: int = 0
 var virada: bool = false
 var combinada: bool = false
 

@@ -1,33 +1,51 @@
 [gd_scene format=3 uid="uid://bvwmb8mkmqb0"]
 
 [ext_resource type="Script" uid="uid://bc0k6vlbkhyem" path="res://system/GameModeSelection.gd" id="1_2tsgs"]
-[ext_resource type="FontFile" uid="uid://brylkpsg34uns" path="res://impact.ttf" id="1_7oq8s"]
 [ext_resource type="PackedScene" uid="uid://hq556ufvuakv" path="res://ui/menus/Card.tscn" id="1_cmpd4"]
+[ext_resource type="FontFile" uid="uid://bcph10er1nc2r" path="res://impact.ttf" id="1_t7e0r"]
 [ext_resource type="Script" uid="uid://crc2ymiqqqn81" path="res://system/SafeAreaHandler.gd" id="2_60qdd"]
-[ext_resource type="Texture2D" uid="uid://cd3dke8eoh2dc" path="res://ui/hud/preview.jpeg" id="4_moyxg"]
+[ext_resource type="Texture2D" uid="uid://dox2q5wt26xoc" path="res://ui/hud/libras-avatar.png" id="4_8uxxo"]
+[ext_resource type="Script" uid="uid://d2lsirlb80jlq" path="res://system/Card.gd" id="6_60qdd"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_bql0y"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header_btn"]
+bg_color = Color(0, 0, 0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb0uk"]
-bg_color = Color(0.10980392, 0.45882353, 0.9411765, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-shadow_size = 10
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header_btn_hover"]
+bg_color = Color(0, 0, 0, 0.08)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moyxg"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0.3372549, 0.7019608, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_size = 4
-shadow_offset = Vector2(0, 2)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_aventura"]
+bg_color = Color(0.372549, 0.505882, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0.372549, 0.505882, 1, 0.25)
+shadow_size = 12
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_trilha"]
+bg_color = Color(0.18, 0.72, 0.42, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0.18, 0.72, 0.42, 0.25)
+shadow_size = 12
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_duelo"]
+bg_color = Color(0.55, 0.55, 0.6, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.15)
+shadow_size = 12
+shadow_offset = Vector2(0, 4)
 
 [node name="Control" type="Control" unique_id=1347801289]
 layout_mode = 3
@@ -38,14 +56,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2tsgs")
 
-[node name="Background" type="TextureRect" parent="." unique_id=218829872]
-layout_mode = 1
+[node name="CanvasBackground" type="CanvasLayer" parent="." unique_id=1612448425]
+layer = -10
+
+[node name="Background" type="ColorRect" parent="CanvasBackground" unique_id=326922892]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("CanvasTexture_bql0y")
+color = Color(0.898039, 0.898039, 0.898039, 1)
 
 [node name="SafeContainer" type="MarginContainer" parent="." unique_id=1456329199]
 layout_mode = 1
@@ -54,60 +74,91 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 script = ExtResource("2_60qdd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SafeContainer" unique_id=1829309693]
+[node name="MainLayout" type="VBoxContainer" parent="SafeContainer" unique_id=179937278]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="SafeContainer/MainLayout" unique_id=604389486]
+layout_mode = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="SafeContainer/VBoxContainer" unique_id=2102485654]
+[node name="BtnVoltar" type="Button" parent="SafeContainer/MainLayout/Header" unique_id=1118725400]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_7oq8s")
-theme_override_font_sizes/font_size = 36
-text = "Escolha o modo de jogo"
-uppercase = true
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_header_btn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_header_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_header_btn_hover")
+text = "‹"
 
-[node name="CardsContainer" type="HBoxContainer" parent="SafeContainer/VBoxContainer" unique_id=1022811796]
+[node name="SpacerLeft" type="Control" parent="SafeContainer/MainLayout/Header" unique_id=1264658594]
 layout_mode = 2
-theme_override_constants/separation = 40
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="SafeContainer/MainLayout/Header" unique_id=102299518]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_fonts/font = ExtResource("1_t7e0r")
+theme_override_font_sizes/font_size = 30
+text = "MODO DE JOGO"
+horizontal_alignment = 1
+
+[node name="SpacerRight" type="Control" parent="SafeContainer/MainLayout/Header" unique_id=1824475969]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Mascot" type="TextureRect" parent="SafeContainer/MainLayout/Header" unique_id=601189867]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_8uxxo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardsArea" type="HBoxContainer" parent="SafeContainer/MainLayout" unique_id=260911085]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
 alignment = 1
 
-[node name="CardAventura" parent="SafeContainer/VBoxContainer/CardsContainer" instance=ExtResource("1_cmpd4")]
+[node name="CardAventura" parent="SafeContainer/MainLayout/CardsArea" unique_id=58558903 instance=ExtResource("1_cmpd4")]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 focus_mode = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_nb0uk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_aventura")
 nome_do_modo = "libras_memory"
-titulo = "AVENTURA"
-descricao = "Explore o mundo e aprenda novos sinais!"
-preview = ExtResource("4_moyxg")
+titulo = "Memória"
+descricao = "Associe pares de sinais em Libras"
+preview = null
+desativado = false
 
-[node name="CardTrilha" parent="SafeContainer/VBoxContainer/CardsContainer" instance=ExtResource("1_cmpd4")]
+[node name="CardTrilha" parent="SafeContainer/MainLayout/CardsArea" unique_id=989306879 instance=ExtResource("1_cmpd4")]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_trilha")
 nome_do_modo = "Trilha"
-titulo = "TRILHA"
-descricao = "Se desafie na trilha de Sinais: supere cada etapa e seja recompensado!"
+titulo = "Trilha"
+descricao = "Avance respondendo perguntas em Libras"
+preview = null
+desativado = false
 
-[node name="CardDuelo" parent="SafeContainer/VBoxContainer/CardsContainer" instance=ExtResource("1_cmpd4")]
+[node name="CardDuelo" parent="SafeContainer/MainLayout/CardsArea" unique_id=832322959 instance=ExtResource("1_cmpd4")]
 layout_mode = 2
-nome_do_modo = "Game"
-titulo = "DUELO"
-descricao = "Jogue com outros jogadores e veja quem é o mais rápido a reconhecer os Sinais!"
-desativado = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_duelo")
+nome_do_modo = ""
+titulo = "Aleatório"
+descricao = "Jogue um minigame surpresa"
+preview = null
+desativado = false
 
-[node name="Button" type="Button" parent="." unique_id=227249815]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 145.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_7oq8s")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_moyxg")
-text = "< Voltar"
-
-[connection signal="pressed" from="Button" to="." method="_on_btn_voltar_pressed"]
+[connection signal="pressed" from="SafeContainer/MainLayout/Header/BtnVoltar" to="." method="_on_btn_voltar_pressed"]

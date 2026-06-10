@@ -6,6 +6,9 @@ var exp_atual: int = 0
 var nivel_jogador: int = 1
 var exp_jogador: int = 0
 
+# Rastreamento de origem do minigame
+var minigame_origem: String = "trilha"  # "trilha" ou "modo_selecao"
+
 var _console_layer: CanvasLayer
 var _rich_text_label: RichTextLabel
 var _line_edit: LineEdit
